@@ -39,7 +39,10 @@ import net.sourceforge.plantuml.klimt.UTranslate;
 import net.sourceforge.plantuml.klimt.creole.Display;
 import net.sourceforge.plantuml.klimt.drawing.UGraphic;
 import net.sourceforge.plantuml.klimt.font.FontConfiguration;
+import net.sourceforge.plantuml.klimt.font.UFont;
+import net.sourceforge.plantuml.klimt.font.UFontContext;
 import net.sourceforge.plantuml.klimt.geom.HorizontalAlignment;
+import net.sourceforge.plantuml.klimt.geom.MagneticBorder;
 import net.sourceforge.plantuml.klimt.geom.XDimension2D;
 import net.sourceforge.plantuml.klimt.geom.XPoint2D;
 import net.sourceforge.plantuml.klimt.shape.TextBlock;
@@ -52,13 +55,15 @@ import net.sourceforge.plantuml.style.Style;
 import net.sourceforge.plantuml.style.StyleBuilder;
 import net.sourceforge.plantuml.style.StyleSignatureBasic;
 
+import java.util.Map;
+
 public class TimeArrow implements UDrawable {
 
 	private final XPoint2D start;
 	private final XPoint2D end;
 	private final Display label;
 	private final ISkinParam skinParam;
-	private final StyleBuilder styleBuilder;
+	private StyleBuilder styleBuilder;
 	private final WithLinkType type;
 
 	public static TimeArrow create(IntricatedPoint pt1, IntricatedPoint pt2, Display label, ISkinParam spriteContainer,
@@ -103,8 +108,7 @@ public class TimeArrow implements UDrawable {
 				type);
 	}
 
-	public static XPoint2D onCircle(XPoint2D pt, double alpha) {
-		final double radius = 8;
+	public static XPoint2D onCircle(XPoint2D pt, double alpha, double radius) {
 		final double x = pt.getX() - Math.sin(alpha) * radius;
 		final double y = pt.getY() - Math.cos(alpha) * radius;
 		return new XPoint2D(x, y);
@@ -122,8 +126,8 @@ public class TimeArrow implements UDrawable {
 		ug.apply(UTranslate.point(start)).draw(line);
 
 		final double delta = 20.0 * Math.PI / 180.0;
-		final XPoint2D pt1 = onCircle(end, angle + delta);
-		final XPoint2D pt2 = onCircle(end, angle - delta);
+		final XPoint2D pt1 = onCircle(end, angle + delta,8);
+		final XPoint2D pt2 = onCircle(end, angle - delta,8);
 
 		final UPolygon polygon = new UPolygon();
 		polygon.addPoint(pt1.getX(), pt1.getY());
@@ -134,13 +138,23 @@ public class TimeArrow implements UDrawable {
 		ug.draw(polygon);
 
 		final TextBlock textLabel = getTextBlock(label);
-		double xText = (pt1.getX() + pt2.getX()) / 2;
-		double yText = (pt1.getY() + pt2.getY()) / 2;
+		final XDimension2D dimLabel = textLabel.calculateDimension(ug.getStringBounder());
+		double yOffset = start.distance(end);// + dimLabel.getHeight();
+		double yOffset2 = 0.0;
+		UFont f = getFontConfiguration().getFont();
+		double descent = ug.getStringBounder().getDescent(f,label.toString());
 		if (start.getY() < end.getY()) {
-			final XDimension2D dimLabel = textLabel.calculateDimension(ug.getStringBounder());
-			yText -= dimLabel.getHeight();
+			yOffset2 = -dimLabel.getHeight(); //+ descent;
+		} else {
+			//yOffset2 = -descent;//;
 		}
-		textLabel.drawU(ug.apply(new UTranslate(xText, yText)));
+
+
+		double xOffset = angle == 0 || angle - Math.PI < 0.01 ? 2.0 : 0.0;
+
+		final XPoint2D textAngledPoint = onCircle(start, angle+Math.PI,yOffset/2);
+
+		textLabel.drawU(ug.apply(new UTranslate(textAngledPoint.getX() + xOffset,textAngledPoint.getY() + yOffset2)));
 
 	}
 
