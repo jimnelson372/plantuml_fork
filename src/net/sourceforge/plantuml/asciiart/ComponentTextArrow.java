@@ -116,20 +116,20 @@ public class ComponentTextArrow extends AbstractComponentText implements ArrowCo
 		final int textWidth = StringUtils.getWcWidth(stringsToDisplay);
 
 		final int yarrow = height - 2;
-		charArea.drawHLine(fileFormat == FileFormat.UTXT ? '\u2500' : '-', yarrow, 1, width);
+		charArea.drawHLine(fileFormat == FileFormat.UTXT ? '\u2500' : '-', yarrow, 0, width-1);
 		if (config.isDotted()) {
-			for (int i = 1; i < width; i += 2) {
+			for (int i = 1; i < width-1; i += 2) {
 				charArea.drawChar(' ', i, yarrow);
 			}
 		}
 
 		if (config.getArrowDirection() == ArrowDirection.LEFT_TO_RIGHT_NORMAL) {
-			charArea.drawChar('>', width - 1, yarrow);
+			charArea.drawChar('>', width - 2, yarrow);
 		} else if (config.getArrowDirection() == ArrowDirection.RIGHT_TO_LEFT_REVERSE) {
-			charArea.drawChar('<', 1, yarrow);
+			charArea.drawChar('<', 0, yarrow);
 		} else if (config.getArrowDirection() == ArrowDirection.BOTH_DIRECTION) {
-			charArea.drawChar('>', width - 1, yarrow);
-			charArea.drawChar('<', 1, yarrow);
+			charArea.drawChar('>', width - 0, yarrow);
+			charArea.drawChar('<', 0, yarrow);
 		} else {
 			throw new UnsupportedOperationException();
 		}
@@ -147,7 +147,7 @@ public class ComponentTextArrow extends AbstractComponentText implements ArrowCo
 	}
 
 	public double getPreferredWidth(StringBounder stringBounder) {
-		final int width = StringUtils.getWcWidth(stringsToDisplay) + 2;
+		final int width = StringUtils.getWcWidth(stringsToDisplay) + 3;
 		if (maxAsciiMessageLength > 0) {
 			return Math.min(maxAsciiMessageLength, width);
 		}

@@ -104,6 +104,6 @@ public class ComponentTextActor extends AbstractComponentText {
 		// make all widths odd sized by converting the string widths to even,
 		// adding 3 to make it both odd and padded by 1 on each side, then return the result
 		// as a double.
-		return (double) ((StringUtils.getWcWidth(stringsToDisplay) / 2 * 2) + 3);
+		return (double) ((StringUtils.getWcWidth(stringsToDisplay) / 2 * 2) + 4);
 	}
 }
