@@ -1,0 +1,60 @@
+@startuml
+participant "0100" as A
+participant "02000" as B
+
+A -> A : odd_self
+B -> B : even_self
+@enduml
+
+@startuml
+participant "0100" as A
+participant "020" as B
+
+A -> A : 1234567890asdfasdf
+@enduml
+
+@startuml
+participant "010" as A
+participant "020" as B
+participant "0300" as C
+participant "0400" as D
+participant "050" as E
+
+A -> B : odd_odd and so muchn more
+B -> C : odd_even
+C -> D : even_even
+D -> E : even_odd
+E -> D : even_odd and so much more
+D -> C : even_even
+C -> B : odd_even
+B -> A : odd_odd
+
+@enduml
+
+@startuml
+title Fixed
+!pragma teoz true
+[-> AAA ++ #ff0000 : No lifeline color with\n<b>!pragma teoz true</b>
+AAA -> BB ++ #00ff00
+return
+return
+BB ->] ++ #ff0000 : No lifeline color with\n<b>!pragma teoz true</b>
+@enduml
+
+@startuml
+title Fixed2
+!pragma teoz true
+[-> AAA  #ff0000 : No lifeline color with\n<b>!pragma teoz true</b>
+AAA -> BB #00ff00
+return
+[<- AAA
+BB ->]  #ff0000 : No lifeline color with\n<b>!pragma teoz true</b>
+@enduml
+
+@startuml
+A -> B : a
+note right: Note
+activate B
+B --> A : b
+deactivate B
+@enduml
