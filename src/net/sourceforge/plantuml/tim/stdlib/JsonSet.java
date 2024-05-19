@@ -39,8 +39,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.sourceforge.plantuml.json.JsonArray;
-import net.sourceforge.plantuml.json.JsonObject;
 import net.sourceforge.plantuml.json.JsonValue;
 import net.sourceforge.plantuml.text.StringLocated;
 import net.sourceforge.plantuml.tim.EaterException;
@@ -67,7 +65,7 @@ public class JsonSet extends SimpleReturnFunction {
 		if (!data.isJson())
 			throw new EaterException("Not JSON data", location);
 
-		final JsonValue json = data.toJson();
+		final JsonValue json = data.toJson().cloneMe();
 
 		if (!json.isArray() && !json.isObject())
 			return data;

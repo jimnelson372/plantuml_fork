@@ -39,8 +39,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.sourceforge.plantuml.json.JsonArray;
-import net.sourceforge.plantuml.json.JsonObject;
 import net.sourceforge.plantuml.json.JsonValue;
 import net.sourceforge.plantuml.text.StringLocated;
 import net.sourceforge.plantuml.tim.EaterException;
@@ -70,7 +68,7 @@ public class JsonMerge extends SimpleReturnFunction {
 		if (!data1.isJson())
 			throw new EaterException("Not JSON data", location);
 
-		final JsonValue json0 = data0.toJson();
+		final JsonValue json0 = data0.toJson().cloneMe();
 		final JsonValue json1 = data1.toJson();
 
 		if ((!json0.isArray() && !json0.isObject() && !json1.isArray() && !json1.isObject())
