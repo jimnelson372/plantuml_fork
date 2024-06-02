@@ -130,7 +130,7 @@ end
 @startuml
 title Par2 with Teoz Not Working
 !pragma teoz true
-par
+par2
      Alice -> Bob: Authentication Request
      Bob -> Charlie : b to c
 else
