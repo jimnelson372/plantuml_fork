@@ -1,0 +1,192 @@
+
+
+@startuml
+!pragma teoz true
+'    opt
+'        A->B: message
+'    end
+'    & opt
+'        C->D: message
+'    end
+'
+'    alt
+'        A->B: message
+'    end
+'    & alt
+'        C->D: message
+'    end
+
+    alt
+        A->B: message
+    else default
+        B->B: other
+    end
+    '& C-> D : message
+    & alt
+        C->D: message
+    else default
+        D->D: other
+    end
+    B -[hidden]-> C: "              "
+
+@enduml
+
+@startuml
+!pragma teoz true
+
+'!theme crt-amber
+'skinparam backgroundColor #000000
+
+participant "Random Name" as foo
+
+hide footbox
+
+'foo -> foo : test
+'&  opt message received
+    alt REQUEST
+        bossrpcp ->B : request
+    else RESPONSE
+        bossrpcp -> bossrpcp : respond
+'    else AGAIN
+'     bossrpcp -> bossrpcp : request
+    end
+'end
+& foo -> foo : test
+
+@enduml
+@startuml
+!pragma teoz true
+
+'!theme crt-amber
+'skinparam backgroundColor #000000
+
+participant "Random Name" as foo
+
+hide footbox
+
+'foo -> foo : test
+  opt message received
+    alt REQUEST
+        bossrpcp -> bossrpcp : request
+    else RESPONSE
+        bossrpcp -> bossrpcp : respond
+    else AGAIN
+     bossrpcp -> bossrpcp : request
+    end
+end
+& foo -> foo : test
+
+@enduml
+
+@startuml
+!pragma teoz true
+'Issue #656
+A -> B++: Get data
+& A -> C++:
+& A -> D++:
+'B -->> A--: Data
+'& C -->> A--:
+'& D -->> A--:
+@enduml
+@startuml
+!pragma teoz true
+ [-> foo : test
+& Bob -> Charlie
+& par
+     Alice -> Bob: Authentication Request
+'& Charlie-> Bob: Authentication Request
+end
+& foo -> Alice : test
+
+@enduml
+@startuml
+!pragma teoz true
+    opt
+        A->B: message
+    end
+    & opt
+        C->D: message
+    end
+
+    alt
+        A->B: message
+    end
+    & alt
+        C->D: message
+    end
+
+    alt
+        A->B: message
+    else default
+        B->B: other
+    end
+    & alt
+        C->D: message
+    else default
+        D->D: other
+    end
+    B -[hidden]-> C: "              "
+@enduml
+@startuml
+title Par2 with Teoz Not Working
+!pragma teoz true
+par
+     Alice -> Bob: Authentication Request
+     Bob -> Charlie : b to c
+else
+     Charlie-> Bob: Authentication Request
+alt test
+     Alice -> Bob : again
+end
+else
+     Charlie -> Sally : hi!
+end
+@enduml
+@startuml
+title Par2 with Puma
+'!pragma teoz true
+par2
+     Alice -> Bob: Authentication Request
+     Bob -> Charlie : b to c
+else
+     Charlie-> Bob: Authentication Request
+alt test
+     Alice -> Bob : again
+end
+else
+     Charlie -> Sally : hi!
+end
+@enduml
+@startuml
+!pragma teoz true
+title Parallel Group in Teoz
+
+Participant Alice
+Participant Bob
+Participant Charlie
+
+    Bob->Charlie: Authentication Request
+& alt test
+     Alice -> Bob : again
+end
+@enduml
+@startuml
+title Parallel Group in Puma
+'!pragma teoz true
+Participant Alice
+Participant Bob
+Participant Charlie
+Par
+    Bob->Charlie: Authentication Request
+Else
+ alt test
+     Alice -> Bob : again
+end
+@enduml
+
+
+
+
+
+
+
