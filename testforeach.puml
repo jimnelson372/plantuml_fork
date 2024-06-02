@@ -1,0 +1,25 @@
+plantuml
+
+@startuml
+!$data=[
+{"a": 1}
+,
+{"a": 2}
+]
+
+!startsub test
+!procedure $test($_data)
+!foreach $d in $_data
+object o_iterate_outside_sub.o##$d.a
+!endfor
+!endprocedure
+
+
+
+'!foreach $d in $data
+'object o_interate_inside_sub.o##$d.a
+'!endfor
+
+$test($data)
+!endsub
+@enduml

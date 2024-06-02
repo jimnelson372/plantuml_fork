@@ -1,0 +1,14 @@
+@startuml
+'!pragma teoz true
+skinparam {
+      Maxmessagesize 200
+   }
+
+   group Grouping messages
+        Test <- Test    : The group frame does not draw a border around the text (located on the left side), but ignores its presence, and also ignores the presence of a line.
+'    note right
+'      the <U+0025>autonumber<U+0025> works everywhere.
+'      Here, its value is ** %autonumber% **
+'    endnote
+   end
+@enduml

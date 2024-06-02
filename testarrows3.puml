@@ -1,0 +1,28 @@
+@startuml
+!pragma teoz true
+'skinparam sequence {
+'ArrowColor Green
+'}
+participant Bob   as b
+participant Alice as a
+'activate a
+'b -> a ++ : hi
+activate b
+
+a <->    a : "" <->""
+a o<->o  a : "" o<->o""
+a x<->x  a : ""  x<->x""
+a x->o   a : ""x->o ""
+a ->x    a : ""->x  ""
+a x->    a : ""x->  ""
+a x<-    a : ""x<-""
+a <-X    a : ""<-x""
+    note right
+      The '<-x' message now draws to the left and down.
+    endnote
+a o<-x   a : "" o<-x ""
+    note right
+      Same with the 'o<-x'
+    endnote
+@enduml
+@startuml

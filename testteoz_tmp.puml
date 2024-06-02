@@ -1,0 +1,12 @@
+@startuml
+!pragma teoz true
+'Issue #656
+activate A
+A -> B ++: a\n
+& B -> C++: a\n\n
+deactivate A
+'& A -> D++:
+'B -->> A--: Data
+'& C -->> A--:
+'& D -->> A--:
+@enduml

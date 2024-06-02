@@ -1,0 +1,5 @@
+@startuml
+skinparam hyperlinkUnderline true
+:hyperlinkColor setting;
+:[[http://plantuml.com]];
+@enduml

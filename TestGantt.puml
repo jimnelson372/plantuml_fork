@@ -1,0 +1,42 @@
+@startgantt
+project starts 1 of August 2022
+saturday are closed
+sunday are closed
+{bob} is off on 2022-08-03 to 2022-08-05
+[task1] on {alice} lasts 2 weeks
+[task2] on {bob:50%} lasts 3 days
+[task3] on {alice} {bob} lasts 4 days
+
+hide resources footbox
+@endgantt
+@startgantt
+project starts 1 of August 2022
+saturday are closed
+sunday are closed
+
+[task1] on {alice} lasts 5 days
+[task2] on {bob} lasts 5 days
+[task3] on {trent} lasts 5 days
+
+[task1] -> [task2]
+[task1] -> [task3]
+
+hide resources footbox
+@endgantt
+@startgantt
+project starts 1 of August 2024
+saturday are closed
+sunday are closed
+
+printscale monthly zoom 6
+
+-- Phase 1 --
+[task1] on {alice} lasts 5 days
+[task2] starts at [task1]'s end and lasts 3 days
+[Phase 1 done] happens at [task2]'s end
+[Phase 2 kickoff] happens 2024-08-15
+-- Phase 2 --
+[task3] ends at [task1]'s end and lasts 3 days
+[task4] starts 2 days after [task2]'s end and lasts 7 weeks
+hide resources footbox
+@endgantt

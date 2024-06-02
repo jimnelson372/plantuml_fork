@@ -1,0 +1,11 @@
+@startuml
+!pragma teoz true
+'Forum 14803
+actor Alice
+actor Bob
+actor Charlie
+actor Dave
+Bob -> Alice ++: message1
+Alice -> Bob & Dave & Charlie --++: multicast message
+
+@enduml

@@ -1,0 +1,903 @@
+@startuml
+!pragma teoz true
+participant Jim as j
+participant Alice as a
+participant Bob   as b
+a ->     b : ""->   ""
+a ->>    b : ""->>  ""
+a -\     b : ""-\   ""
+a -\\    b : ""-\\\\""
+a -/     b : ""-/   ""
+a -//    b : ""-//  ""
+a ->x    b : ""->x  ""
+a x->    b : ""x->  ""
+a o->    b : ""o->  ""
+a ->o    b : ""->o  ""
+a o->o   b : ""o->o ""
+a <->    b : ""<->  ""
+a o<->o  b : ""o<->o""
+a x<->x  b : ""x<->x""
+a ->>o   b : ""->>o ""
+a -\o    b : ""-\o  ""
+a -\\o   b : ""-\\\\o""
+a -/o    b : ""-/o  ""
+a -//o   b : ""-//o ""
+a x->o   b : ""x->o ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+a <-     b : ""<-  ""
+a <<-    b : ""<<-  ""
+a /-     b : ""/-   ""
+a //-    b : ""//-""
+a \-     b : ""\\-""
+a \\-    b : ""\\\\-""
+a x<-    b : ""x<-  ""
+a <-x    b : ""<-x  ""
+a <-o    b : ""<-o  ""
+a o<-    b : ""o<-  ""
+a o<-o   b : ""o<-o ""
+a <->    b : ""<->  ""
+a o<->o  b : ""o<->o""
+a x<->x  b : ""x<->x""
+a o<<-  b : ""o<<- ""
+a o/-    b : ""o/-  ""
+a o//-   b : ""o//-""
+a o\-    b : ""o\\-  ""
+a o\\-   b : ""o\\\\-""
+a o<-x   b : ""o<-x ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+a ->     a : ""->   ""
+a ->>    a : ""->>  ""
+a -\     a : ""-\   ""
+a -\\    a : ""-\\\\""
+a -/     a : ""-/   ""
+a -//    a : ""-//  ""
+a o->    a : ""o->  ""
+a ->o    a : ""->o  ""
+a o->o   a : ""o->o ""
+a <->    a : ""<->  ""
+a o<->o  a : ""o<->o""
+a ->>o   a : ""->>o ""
+a -\o    a : ""-\o  ""
+a -\\o   a : ""-\\\\o""
+a -/o    a : ""-/o  ""
+a -//o   a : ""-//o ""
+@enduml
+@startuml
+!pragma teoz true
+participant Bob as b
+participant Alice as a
+a <-     a : ""<-""
+a o<-     a : ""o<-""
+a o<-o     a : ""o<-o""
+a <<-    a : ""<<-""
+a /-     a : ""/-""
+a //-    a : ""//""
+a \-     a : ""\-""
+a \\-    a : ""\\\\-""
+a <-o    a : ""<-o""
+a o<-    a : ""o<-""
+a o<-o   a : ""o<-o""
+a o<<-   a : ""o<<-""
+a o/-    a : ""o/-""
+a o//-   a : ""o//-""
+a o\-    a : ""o\\-""
+a o\\-   a : ""o\\\\-""
+@enduml
+@startuml
+!pragma teoz true
+participant Bob   as b
+participant Alice as a
+a <->    a : "" <->""
+a o<->o  a : "" o<->o""
+a x<->x  a : ""  x<->x""
+a x->o   a : ""x->o ""
+a ->x    a : ""->x  ""
+a x->    a : ""x->  ""
+a x<-    a : ""x<-""
+a <-X    a : ""<-x""
+a o<-x   a : "" o<-x ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+[->      b : ""[->   ""
+[->>     b : ""[->>  ""
+[-\      b : ""[-\   ""
+[-\\     b : ""[-\\\\""
+[-/      b : ""[-/   ""
+[-//     b : ""[-//  ""
+[->x     b : ""[->x  ""
+[x->     b : ""[x->  ""
+[o->     b : ""[o->  ""
+[->o     b : ""[->o  ""
+[o->o    b : ""[o->o ""
+[<->     b : ""[<->  ""
+[o<->o   b : ""[o<->o""
+[x<->x   b : ""[x<->x""
+[->>o    b : ""[->>o ""
+[-\o     b : ""[-\o  ""
+[-\\o    b : ""[-\\\\o""
+[-/o     b : ""[-/o  ""
+[-//o    b : ""[-//o ""
+[x->o    b : ""[x->o ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+a ->]      : ""->]   ""
+a ->>]     : ""->>]  ""
+a -\]      : ""-\]   ""
+a -\\]     : ""-\\\\]""
+a -/]      : ""-/]   ""
+a -//]     : ""-//]  ""
+a ->x]     : ""->x]  ""
+a x->]     : ""x->]  ""
+a o->]     : ""o->]  ""
+a ->o]     : ""->o]  ""
+a o->o]    : ""o->o] ""
+a <->]     : ""<->]  ""
+a o<->o]   : ""o<->o]""
+a x<->x]   : ""x<->x]""
+a ->>o]    : ""->>o] ""
+a -\o]     : ""-\o]  ""
+a -\\o]    : ""-\\\\o]""
+a -/o]     : ""-/o]  ""
+a -//o]    : ""-//o] ""
+a x->o]    : ""x->o] ""
+@enduml
+@startuml
+Test <<-- Test: the arrow is [now] drawn correctly
+Test -->> Test: the arrow is drawn correctly
+@enduml
+@startuml
+skinparam {
+   Maxmessagesize 200
+}
+
+activate Test
+Test <<-- Test : the arrow and text are located inside the Lifeline because they are counted from the right side of the active member's column bar (Lifeline). Which is an incorrect display, right?
+Test <<-- Test : also the arrow is not displayed correctly (issue: #1678). (I wonder if the closing of the Lifeline is displayed correctly? Should it also include the arrow before it, i.e. close after it? If not, how do I close the Life Line after the last arrow?)
+deactivate Test
+
+@enduml
+@startuml
+'!pragma teoz true
+skin rose
+skinparam sequence {
+ArrowColor Green
+}
+'Participant Test
+'Participant Testing
+'Participant Test2
+
+Testing <- Testing #red: 1st self message, no activation
+    note left
+      A note on the self message
+    endnote
+Testing <- Testing ++: 2nd self message, starting activation
+Testing <- Testing : 2.5th self message, no change
+    note right
+      A note on the self message
+    endnote
+Testing \\-- Testing ++: 3rd self message, staring another activation
+Testing <<- Testing : 4th self message, continuing in the current activation
+    note left
+      A note on the self message
+    endnote
+Testing <- Testing --: 5th self message, deactivating once
+
+Testing <- Testing : 6th self message, continuing the activation
+Testing <- Testing --: 7th self message, exiting the activation
+Testing <- Testing : 8th self message, no activation
+@enduml
+
+@startuml
+skinparam {
+   Maxmessagesize 200
+}
+group Grouping messages
+    Test <- Test    : The group frame [now] does draw a border around the text (located on the left side), [no longer] ignores its presence, and also [no longer] ignores the presence of a line.
+end
+@enduml
+@startuml
+skinparam {
+      Maxmessagesize 200
+}
+
+group Grouping messages
+    Test <- Test : The group frame [now] does draw a border around the text (located on the left side), [no longer] ignores its presence, and also [no longer] ignores the presence of a line.
+note right
+  A note on the self message
+endnote
+end
+@enduml
+@startuml
+skinparam {
+      Maxmessagesize 200
+}
+
+group Grouping messages
+    Test <- Test : The group frame [now] does draw a border around the text (located on the left side), [no longer] ignores its presence, and also [no longer] ignores the presence of a line.
+note left
+  A note on the self message
+endnote
+end
+@enduml
+@startuml
+group
+    a -> a : This works fine
+end
+group
+    a <- a : This [now works]
+end
+@enduml
+@startuml
+Test --> Test: Text
+note right: the location of the Comment is correct
+
+Test --> Test: Text
+note left: the location of the Comment is correct
+
+Test <-- Test: Text
+note right: the location of the Comment is [now correct]
+
+Test <-- Test: Text
+note left: the location of the Comment is [now correct]
+@enduml
+@startuml
+!pragma teoz true
+skinparam {
+  Maxmessagesize 200
+}
+
+group Grouping messages
+    Test <- Test    : The group frame [now] does draw a border around the text (located on the left side), [lo longer] ignores its presence, and [no longer]] ignores the presence of a line.
+    note right
+      A note on the self message
+    endnote
+end
+@enduml
+@startuml
+'!pragma teoz true
+skinparam {
+  Maxmessagesize 200
+}
+
+group Grouping messages
+    Test <- Test    : The group frame [now] does draw a border around the text (located on the left side), [lo longer] ignores its presence, and [no longer]] ignores the presence of a line.
+    note left
+      A note on the self message
+    endnote
+end
+@enduml
+
+@startuml
+!pragma teoz true
+skin rose
+skinparam sequence {
+ArrowColor Green
+}
+'Participant Test
+'Participant Testing
+'Participant Test2
+
+Testing <- Testing #red: 1st self message, no activation
+    note left
+      A note on the self message
+    endnote
+Testing <- Testing ++: 2nd self message, starting activation
+Testing <- Testing : 2.5th self message, no change
+    note right
+      A note on the self message
+    endnote
+Testing \\-- Testing ++: 3rd self message, staring another activation
+Testing <<- Testing : 4th self message, continuing in the current activation
+    note left
+      A note on the self message
+    endnote
+Testing <- Testing --: 5th self message, deactivating once
+
+Testing <- Testing : 6th self message, continuing the activation
+Testing <- Testing --: 7th self message, exiting the activation
+Testing <- Testing : 8th self message, no activation
+@enduml
+@startuml
+!pragma teoz true
+
+Bob -> Alice : hello
+rnote right: rnote\n just right
+rnote left: rnote\n just left
+
+Bob <- Alice: hello
+hnote right: hnote\n just right
+hnote left: hnote\n just left
+
+hnote over Alice: hnote\n over \n Alice
+hnote left Alice: hnote\n left \n Alice
+hnote right Alice: hnote\n right \n Alice
+rnote over Alice: rnote\n over \n Alice
+rnote left Alice: rnote\n left \n Alice
+rnote right Alice: rnote\n right \n Alice
+
+hnote over Bob: hnote\n over \n Bob
+hnote left Bob: hnote\n left \n Bob
+hnote right Bob: hnote\n right \n Bob
+rnote over Bob: rnote\n over \n Bob
+rnote left Bob: rnote\n left \n Bob
+rnote right Bob: rnote\n right \n Bob
+
+Bob -> Alice : hello
+note right: note\n just right
+note left: note\n just left
+@enduml
+
+@startuml
+!pragma teoz true
+title very long title on this diagram so that the boarder
+skinparam ParticipantPadding 18
+skinparam BoxPadding 20
+box
+participant A
+end box
+  A -> B
+& B -> C
+opt#transparent #pink bad?
+  A o-> B
+ B <-o] : yoloafadfadsfafdasdfasdf
+'& C -[hidden]> C /' enlarge opt box '/
+end
+@enduml
+@startuml
+!pragma teoz true
+
+group #ffa Group 1
+    Particpant_A -> Particpant_B
+    activate Particpant_A
+    Particpant_A <- Particpant_B
+    deactivate Particpant_A
+end
+
+group #ffa Group 2
+    Particpant_A -> Particpant_B++
+    Particpant_A <- Particpant_B--
+end
+
+group #ffa Group 3
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+group #ffa Group 3b
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+        Particpant_A -> Particpant_B++
+                Particpant_A -> Particpant_B++
+                        Particpant_A -> Particpant_B++
+                        Particpant_A <- Particpant_B--
+                Particpant_A <- Particpant_B--
+        Particpant_A <- Particpant_B--
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+group #ffa Group 3c
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+        Particpant_B -> Particpant_A++
+                Particpant_B -> Particpant_A++
+                                Particpant_B -> Particpant_A++
+                                Particpant_B <- Particpant_A--
+                Particpant_B <- Particpant_A--
+        Particpant_B <- Particpant_A--
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+
+group #ffa Group 4
+    Particpant_A -> Particpant_B
+    Particpant_A <- Particpant_B
+end
+@enduml
+@startuml
+!pragma teoz true
+skinparam ParticipantPadding 18
+skinparam BoxPadding 20
+box
+participant A
+end box
+  A -> B
+& B -> C
+opt#transparent #pink bad /'in teoz'/
+?o-> B : Pre
+& B <-o? : yolo and then more to the right
+'& C -[hidden]> C /' enlarge opt box '/
+end
+opt#transparent expand?
+[o-> B : Pre
+& B <-o? : yolo
+'& C -[hidden]> C /' enlarge opt box '/
+'& C -[hidden]> B
+end
+opt#transparent #20DD0090 OK
+  A o-> B
+& B <-C : yolo and then to the right
+'& C -[hidden]> C /' enlarge opt box '/
+end
+opt#transparent #pink bad?
+  A o-> B
+ B <-o] : yolo
+'& C -[hidden]> C /' enlarge opt box '/
+end
+@enduml
+@startuml
+!pragma teoz true
+'Issue #656
+A -> B++: Get data
+& A -> C++:
+& A -> D++:
+B -->> A--: Data
+& C -->> A--:
+& D -->> A--:
+@enduml
+@startuml
+!pragma teoz true
+'Issue #739 & Forum 14873
+autonumber
+AAA -> BBB++: Message 0
+BBB -[#22A722]> DDD: Message 1
+deactivate BBB
+activate DDD
+& DDD -> EEE: Message 2
+note right #red: <-- Expect 1 & 2 to be same row
+DDD -[#22A722]> FFF++--: Msg 3
+& FFF -> GGG--: Msg 4
+note right #red: <-- Expect 3 & 4 to be same row
+@enduml
+@startuml
+!pragma teoz true
+'Issue #1094
+== Bad I ==
+A -> B ++		: ping
+note right: Lifeline extends\n past message
+B -->? : log
+& B -> A --		: pong
+== Bad II ==
+A -> B 			: ping
+Activate B
+note right: equally broken\nwithout --/++ notation
+B -->? : log
+& B -> A 		: pong
+Deactivate B
+== Good ==
+A -> B ++		: ping
+note right: but not perfect:\n"log" too close\n to lifeline
+B -> A --		: pong
+& B -->? : log
+== Best ==
+A -> B 			: ping
+Activate B
+note right: Looks perfect!
+B -->? : log
+Deactivate B
+& B -> A 		: pong
+@enduml
+@startuml
+!pragma teoz true
+'Forum 13409
+activate b
+b -> a --++ #red : hello
+deactivate a
+b -> a : hello2
+activate a #green
+deactivate a
+b -> a ++ #green: hello3
+@enduml
+@startuml
+!pragma teoz true
+' Forum 12899 -- requested slight stepping though.
+autoactivate on
+
+participant Alice
+box "Grouping" #LightBlue
+ participant Bob
+ participant Charlie
+end box
+participant Dave
+
+  Alice -> Bob : request
+&  Bob -> Charlie : request
+&   Charlie -> Dave : request
+    Charlie <-- Dave : response
+&  Bob <-- Charlie : response
+& Alice <-- Bob : response
+@enduml
+@startuml
+!pragma teoz true
+'Issue 1099
+  A <[#red]-o? ++
+  A -> B -- : very long\nmulti-line
+& B -> C ++ #red: single
+note over C: got it
+Deactivate C
+====
+  A <-o? ++ #green
+  A -> B -- : very long\nmulti-line
+& B -> C ++ #green : same\nheight
+note over C: got it
+Deactivate C
+====
+  A <-o? ++ #red
+  'activate A
+  A -> B -- : single
+& B -> C ++ : very long\nmulti-line
+note over C: got it
+Deactivate C
+@enduml
+@startuml
+!pragma teoz true
+'Issue #1494
+'skinparam style strictuml
+
+Actor Mallory as m
+Actor Bob as b
+Actor Alice as a
+
+activate b
+b ->> a --++ : Hi Alice!
+a ->> b --++ : Bye Bob!
+
+b ->> a ++ : Bye Alice!
+& b ->> m --++ : Bye Alice!
+
+deactivate a
+deactivate m
+@enduml
+@startuml
+!pragma teoz true
+'Issue #1723
+dummy -> A ++: first step
+
+A -> A: test
+A -> B --++: second step
+
+B -> B: test
+B -> C--: third step
+
+@enduml
+@startuml
+!pragma teoz true
+note over Bob, Alice: teoz true
+activate Bob
+Bob -> Alice ++--: not ok
+Alice-> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice ++: not ok
+deactivate Bob
+Alice -> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice: not ok
+deactivate Bob
+activate Alice
+Alice -> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice --: not ok
+activate Alice
+Alice -> Alice: style 2
+deactivate Alice
+@enduml
+@startuml
+!pragma teoz true
+'also Forum 15191
+Bob -> Alice : message
+& note right of Alice: ok
+Alice -[hidden]> Alice
+
+activate Bob
+Bob -> Alice --: deactivate
+& note right of Alice: ok
+
+Bob -> Alice ++: activate
+& note right of Alice: ok
+deactivate Alice
+
+activate Bob
+Bob -> Alice --++: act+deact
+& note right of Alice: not ok
+deactivate Alice
+@enduml
+@startuml
+!pragma teoz true
+'Issue #1494 with additional parallel to C.
+'skinparam style strictuml
+
+Actor Mallory as m
+Actor Bob as b
+Actor Alice as a
+Actor Charlie as c
+
+activate b
+b ->> a --++ : Hi Alice!
+a ->> b --++ : Bye Bob!
+
+b ->> a ++ : Bye Alice!
+& b ->> m ++ : Bye Alice!
+& a ->> c ++: Bye C too!
+deactivate b
+
+deactivate a
+deactivate m
+deactivate c
+@enduml
+
+@startuml
+'Forum 16663
+!pragma teoz true
+First -> Second : message
+activate First
+activate Second
+Second ->  First: response
+deactivate First
+deactivate Second
+@enduml
+
+
+@startuml
+!pragma teoz true
+'Forum 14803
+actor Alice
+actor Bob
+actor Charlie
+actor Dave
+Bob -> Alice ++: message1
+Alice -> Bob & Dave & Charlie --++: multicast message
+@enduml
+
+@startuml
+!pragma teoz true
+'Issue #656 -- modified
+A -> B++: Get data
+& B -> C++:a\n2
+& C -> D++:
+B -->> A--: Data
+& C -->> A--:
+& D -->> C--:a\n2
+@enduml
+
+@startuml
+!pragma teoz true
+A -> B++: Get data
+& B -> C++:a\n2
+& C -> D++:
+D -->> C--:a\n2
+& C -->> A--:
+&B -->> A--: Data
+
+
+@enduml
+
+@startuml
+!pragma teoz true
+'Issue #656
+A -> B++: Get data
+& B -> C++:a\n2
+& C -> D++: a\n2\n3
+@enduml
+
+@startuml
+!pragma teoz true
+
+participant Particpant_A
+participant Particpant_B
+participant Particpant_C
+
+group #ffa Group 1
+    Particpant_A -> Particpant_B
+    activate Particpant_A
+    Particpant_A <- Particpant_B
+    deactivate Particpant_A
+end
+
+group #ffa Group 2
+    Particpant_A -> Particpant_B++
+    Particpant_A <- Particpant_B--
+end
+
+group #ffa Group 3
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+        Particpant_A -> Particpant_B++
+                Particpant_A -> Particpant_B++
+            Particpant_A -> Particpant_B++
+            Particpant_B -> Particpant_A : hello
+            Particpant_A <- Particpant_B--
+                  Particpant_A <- Particpant_B--
+        Particpant_A <- Particpant_B--
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+group #ffa Group 4
+    Particpant_A -> Particpant_B
+    Particpant_A <- Particpant_B
+end
+@enduml
+
+@startuml
+!pragma teoz true
+
+browser -> ssl_server.exe : 1
+browser -> ssl_server.exe : 2
+browser -> ssl_server.exe : 3
+browser -> ssl_server.exe : 4
+browser -> ssl_server.exe : 5
+
+
+group SSL Application data
+browser -> ssl_server.exe : in
+end /' SSL Application data '/
+
+
+destroy browser
+
+@enduml
+
+@startuml
+'!pragma teoz true
+
+group #ffa Group 1
+    Particpant_A -> Particpant_B
+    activate Particpant_A
+    Particpant_A <- Particpant_B
+    deactivate Particpant_A
+end
+
+group #ffa Group 2
+    Particpant_A -> Particpant_B++
+    Particpant_A <- Particpant_B--
+end
+
+group #ffa Group 3
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+group #ffa Group 4
+    Particpant_A -> Particpant_B
+    Particpant_A <- Particpant_B
+end
+
+group #ffa Group 5, Which has a very long header
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+group #ffa Group 6, While also has a very long header
+    Particpant_A -> Particpant_B
+    Particpant_A <- Particpant_B
+end
+@enduml
+
+@startuml
+skinparam {
+      Maxmessagesize 200
+   }
+
+   group Grouping messages
+      Test <<-- Test : The group frame does not draw a border around the text (located on the left side), but ignores its presence, and also ignores the presence of a line.
+   end
+@enduml
+
+@startuml
+group
+    a -> a : This works fine
+end
+group
+    a <- a : This does not work
+end
+@enduml
+@startuml
+!pragma teoz true
+
+group #ffa Group 1
+    Particpant_A -> Particpant_B
+    activate Particpant_A
+    Particpant_A <- Particpant_B
+    deactivate Particpant_A
+end
+
+group #ffa Group 2
+    Particpant_A -> Particpant_B++
+    Particpant_A <- Particpant_B--
+end
+
+group #ffa Group 3
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+group #ffa Group 3b
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+        Particpant_A -> Particpant_B++
+                Particpant_A -> Particpant_B++
+                        Particpant_A -> Particpant_B++
+                        Particpant_A <- Particpant_B--
+                Particpant_A <- Particpant_B--
+        Particpant_A <- Particpant_B--
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+'group #ffa Group 3b2
+'    Particpant_A -> Particpant_B++
+'    activate Particpant_A
+'    Particpant_A <- Particpant_B
+'    Particpant_A -> Particpant_B !!
+'    deactivate Particpant_A
+'end
+'
+'group #ffa Group 3b3
+'    Particpant_A -> Particpant_B++
+'    activate Particpant_A
+'    Particpant_A <- Particpant_B !!
+'    deactivate Particpant_B
+'end
+
+group #ffa Group 3c
+    Particpant_A -> Particpant_B++
+    activate Particpant_A
+        Particpant_B -> Particpant_A++
+                Particpant_B -> Particpant_A++
+                                Particpant_B -> Particpant_A++
+                                Particpant_B <- Particpant_A--
+                Particpant_B <- Particpant_A--
+        Particpant_B <- Particpant_A--
+    Particpant_A <- Particpant_B--
+    deactivate Particpant_A
+end
+
+
+group #ffa Group 4
+    Particpant_A -> Particpant_B
+    Particpant_A <- Particpant_B
+end
+@enduml
+@startuml
+!pragma teoz true
+
+group #ffa Group 1
+    Particpant_A -> Particpant_B
+    Particpant_A <- Particpant_B
+end
+
+group #ffa Group 2
+    Particpant_A -> Particpant_B++
+    Particpant_A <- Particpant_B--
+end
+@enduml

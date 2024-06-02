@@ -1,0 +1,120 @@
+@startuml
+!pragma teoz true
+skin rose
+skinparam sequence {
+ArrowColor Green
+}
+
+Testing <- Testing : 1st self message, no activation
+Testing <- Testing ++: 2nd self message, starting activation
+Testing <- Testing : 2.5th self message, no change
+Testing <- Testing ++: 3rd self message, staring another activation
+Testing <- Testing : 4th self message, continuing in the current activation
+Testing <- Testing --: 5th self message, deactivating once
+Testing <- Testing : 6th self message, continuing the activation
+Testing <- Testing --: 7th self message, exiting the activation
+Testing <- Testing : 8th self message, no activation
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+a ->     a : ""->   ""
+b -> a
+a ->>    a : ""->>  ""
+b ->> a
+a -\     a : ""-\   ""
+b -\ a
+a -\\    a : ""-\\\\""
+b -\\ a
+a -/     a : ""-/   ""
+b -/ a
+a -//    a : ""-//  ""
+b -// a
+a ->o    a : ""->o  ""
+b ->o a
+a ->>o   a : ""->>o ""
+b ->>o a
+a -\o    a : ""-\o  ""
+b -\o a
+a -\\o   a : ""-\\\\o""
+b -\\o a
+a -/o    a : ""-/o  ""
+b -/o a
+a -//o   a : ""-//o ""
+b -//o a
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+b <-     b : ""<-""
+b <-     a
+b <<-    b : ""<<-""
+b <<- a
+b /-     b : ""/-""
+b /- a
+b //-    b : ""//""
+b //- a
+b \-     b : ""\-""
+b \- a
+b \\-    b : ""\\\\-""
+b \\- a
+b o<-     b : ""o<-""
+b o<- a
+b o<<-   b : ""o<<-""
+b o<<- a
+b o/-    b : ""o/-""
+b o/- a
+b o//-   b : ""o//-""
+b o//- a
+b o\-    b : ""o\\-""
+b o\- a
+b o\\-   b : ""o\\\\-""
+b o\\- a
+@enduml
+@startuml
+!pragma teoz true
+participant Bob   as b
+participant Alice as a
+a <->    a : ""<->""
+a o<->o  a : ""o<->o""
+a x<->x  a : ""x<->x""
+a x->o   a : ""x->o""
+a ->x    a : ""->x""
+a x->    a : ""x->""
+a x<-    a : ""x<-""
+a <-X    a : ""<-x""
+a o<-x   a : ""o<-x""
+@enduml
+@startuml
+'!pragma teoz true
+'skinparam sequence {
+'ArrowColor Green
+'}
+participant Bob as b
+participant Alice as a
+activate a
+activate b
+activate a
+activate a
+a <-     a
+a o<-     a
+a o<-o     a
+a <<-    a
+a /-     a
+a //-    a
+a \-     a
+a \\-    a
+activate b
+a <-o    a
+a o<-    a
+activate b
+a o<-o   a
+a o<<-   a
+activate b
+a o/-    a
+a o//-   a
+a o\-    a
+a o\\-   a
+@enduml

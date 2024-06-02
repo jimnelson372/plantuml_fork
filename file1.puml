@@ -1,0 +1,24 @@
+@startuml
+
+
+!startsub what
+!$data=[
+{"a": 1}
+,
+{"a": 2}
+]
+!procedure $subwrapper()
+
+  !foreach $d in $data
+  object o_interate_inside_sub.o##$d.a
+  !endfor
+
+  !foreach $d in $data
+  object o_second_inside_sub.z##$d.a
+  !endfor
+
+
+!endprocedure
+$subwrapper()
+!endsub
+@enduml

@@ -1,0 +1,157 @@
+@startuml
+participant Alice as a
+participant Bob   as b
+a ->     b : ""->   ""
+a ->>    b : ""->>  ""
+a -\     b : ""-\   ""
+a -\\    b : ""-\\\\""
+a -/     b : ""-/   ""
+a -//    b : ""-//  ""
+a ->x    b : ""->x  ""
+a x->    b : ""x->  ""
+a o->    b : ""o->  ""
+a ->o    b : ""->o  ""
+a o->o   b : ""o->o ""
+a <->    b : ""<->  ""
+a o<->o  b : ""o<->o""
+a x<->x  b : ""x<->x""
+a ->>o   b : ""->>o ""
+a -\o    b : ""-\o  ""
+a -\\o   b : ""-\\\\o""
+a -/o    b : ""-/o  ""
+a -//o   b : ""-//o ""
+a x->o   b : ""x->o ""
+@enduml
+@startuml
+participant Alice as a
+participant Bob   as b
+a ->     a : ""->   ""
+a ->>    a : ""->>  ""
+a -\     a : ""-\   ""
+a -\\    a : ""-\\\\""
+a -/     a : ""-/   ""
+a -//    a : ""-//  ""
+a ->x    a : ""->x  ""
+a x->    a : ""x->  ""
+a o->    a : ""o->  ""
+a ->o    a : ""->o  ""
+a o->o   a : ""o->o ""
+a <->    a : ""<->  ""
+a o<->o  a : ""o<->o""
+a x<->x  a : ""x<->x""
+a ->>o   a : ""->>o ""
+a -\o    a : ""-\o  ""
+a -\\o   a : ""-\\\\o""
+a -/o    a : ""-/o  ""
+a -//o   a : ""-//o ""
+a x->o   a : ""x->o ""
+@enduml
+@startuml
+'!pragma teoz true
+skinparam sequence {
+ArrowColor Green
+}
+participant Boby   as b
+participant Alice as a
+activate a
+activate b
+a <-     a : ""<-  ""
+b -> a
+b -> b : ""->""
+b <- a
+
+a o<-     a : ""o<-  ""
+b ->o a
+b ->o b : ""->o""
+b o<- a
+
+a o<-o     a : ""o<-o  ""
+a o<-o b
+b o->o b : ""o->o""
+b o<-o a
+b o-/o b : ""o-/o""
+b o\-o a
+b o-\o b : ""o-\o""
+b o/-o a
+
+a <<-    a : ""<<- ""
+b ->> a
+b ->> b  : ""->>""
+b <<- a
+a /-     a : ""/-  ""
+a //-    a : ""//- ""
+a \-     a : ""\-  ""
+b -/ a
+a \\-    a : ""\\\\- ""
+a x<-    a : ""x<- ""
+a <-X    a : ""<-x""
+    note right
+      Is this upward loop when left arrow starting from X intentional?
+      Or should it go down on the left side like the rest?
+    endnote
+a <-o    a : ""<-o ""
+a o<-    a : ""o<- ""
+b ->o a
+a o<-o   a : ""o<-o""
+a o->o  a
+a <->    a : "" <->""
+a o<->o  a : "" o<->o""
+a x<->x  a : ""  x<->x""
+a o<<-   a : ""o<<-""
+b ->>o a
+a o/-    a : ""o/- ""
+b -\o a
+a o//-   a : ""o//-""
+a o\-    a : ""o\\- ""
+b -/o a
+a o\\-   a : ""o\\\\-""
+a o<-x   a : "" o<-x ""
+@enduml
+@startuml
+participant Alice as a
+participant Bob   as b
+[->      b : ""[->   ""
+[->>     b : ""[->>  ""
+[-\      b : ""[-\   ""
+[-\\     b : ""[-\\\\""
+[-/      b : ""[-/   ""
+[-//     b : ""[-//  ""
+[->x     b : ""[->x  ""
+[x->     b : ""[x->  ""
+[o->     b : ""[o->  ""
+[->o     b : ""[->o  ""
+[o->o    b : ""[o->o ""
+[<->     b : ""[<->  ""
+[o<->o   b : ""[o<->o""
+[x<->x   b : ""[x<->x""
+[->>o    b : ""[->>o ""
+[-\o     b : ""[-\o  ""
+[-\\o    b : ""[-\\\\o""
+[-/o     b : ""[-/o  ""
+[-//o    b : ""[-//o ""
+[x->o    b : ""[x->o ""
+@enduml
+@startuml
+participant Alice as a
+participant Bob   as b
+a ->]      : ""->]   ""
+a ->>]     : ""->>]  ""
+a -\]      : ""-\]   ""
+a -\\]     : ""-\\\\]""
+a -/]      : ""-/]   ""
+a -//]     : ""-//]  ""
+a ->x]     : ""->x]  ""
+a x->]     : ""x->]  ""
+a o->]     : ""o->]  ""
+a ->o]     : ""->o]  ""
+a o->o]    : ""o->o] ""
+a <->]     : ""<->]  ""
+a o<->o]   : ""o<->o]""
+a x<->x]   : ""x<->x]""
+a ->>o]    : ""->>o] ""
+a -\o]     : ""-\o]  ""
+a -\\o]    : ""-\\\\o]""
+a -/o]     : ""-/o]  ""
+a -//o]    : ""-//o] ""
+a x->o]    : ""x->o] ""
+@enduml

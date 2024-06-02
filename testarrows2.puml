@@ -1,0 +1,172 @@
+@startuml
+!pragma teoz true
+participant Jim as j
+participant Alice as a
+participant Bob   as b
+a ->     b : ""->   ""
+a ->>    b : ""->>  ""
+a -\     b : ""-\   ""
+a -\\    b : ""-\\\\""
+a -/     b : ""-/   ""
+a -//    b : ""-//  ""
+a ->x    b : ""->x  ""
+a x->    b : ""x->  ""
+a o->    b : ""o->  ""
+a ->o    b : ""->o  ""
+a o->o   b : ""o->o ""
+a <->    b : ""<->  ""
+a o<->o  b : ""o<->o""
+a x<->x  b : ""x<->x""
+a ->>o   b : ""->>o ""
+a -\o    b : ""-\o  ""
+a -\\o   b : ""-\\\\o""
+a -/o    b : ""-/o  ""
+a -//o   b : ""-//o ""
+a x->o   b : ""x->o ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+a <-     b : ""<-  ""
+a <<-    b : ""<<-  ""
+a /-     b : ""/-   ""
+a //-    b : ""//-""
+a \-     b : ""\\-""
+a \\-    b : ""\\\\-""
+a x<-    b : ""x<-  ""
+a <-x    b : ""<-x  ""
+a <-o    b : ""<-o  ""
+a o<-    b : ""o<-  ""
+a o<-o   b : ""o<-o ""
+a <->    b : ""<->  ""
+a o<->o  b : ""o<->o""
+a x<->x  b : ""x<->x""
+a o<<-  b : ""o<<- ""
+a o/-    b : ""o/-  ""
+a o//-   b : ""o//-""
+a o\-    b : ""o\\-  ""
+a o\\-   b : ""o\\\\-""
+a o<-x   b : ""o<-x ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+a ->     a : ""->   ""
+a ->>    a : ""->>  ""
+a -\     a : ""-\   ""
+a -\\    a : ""-\\\\""
+a -/     a : ""-/   ""
+a -//    a : ""-//  ""
+a o->    a : ""o->  ""
+a ->o    a : ""->o  ""
+a o->o   a : ""o->o ""
+a <->    a : ""<->  ""
+a o<->o  a : ""o<->o""
+a ->>o   a : ""->>o ""
+a -\o    a : ""-\o  ""
+a -\\o   a : ""-\\\\o""
+a -/o    a : ""-/o  ""
+a -//o   a : ""-//o ""
+@enduml
+@startuml
+!pragma teoz true
+participant Bob as b
+participant Alice as a
+a <-     a : ""<-""
+a o<-     a : ""o<-""
+a o<-o     a : ""o<-o""
+a <<-    a : ""<<-""
+a /-     a : ""/-""
+a //-    a : ""//""
+a \-     a : ""\-""
+a \\-    a : ""\\\\-""
+a <-o    a : ""<-o""
+a o<-    a : ""o<-""
+a o<-o   a : ""o<-o""
+a o<<-   a : ""o<<-""
+a o/-    a : ""o/-""
+a o//-   a : ""o//-""
+a o\-    a : ""o\\-""
+a o\\-   a : ""o\\\\-""
+@enduml
+@startuml
+!pragma teoz true
+participant Bob   as b
+participant Alice as a
+a <->    a : "" <->""
+a o<->o  a : "" o<->o""
+a x<->x  a : ""  x<->x""
+a x->o   a : ""x->o ""
+a ->x    a : ""->x  ""
+a x->    a : ""x->  ""
+a x<-    a : ""x<-""
+a <-X    a : ""<-x""
+a o<-x   a : "" o<-x ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+[->      b : ""[->   ""
+[->>     b : ""[->>  ""
+[-\      b : ""[-\   ""
+[-\\     b : ""[-\\\\""
+[-/      b : ""[-/   ""
+[-//     b : ""[-//  ""
+[->x     b : ""[->x  ""
+[x->     b : ""[x->  ""
+[o->     b : ""[o->  ""
+[->o     b : ""[->o  ""
+[o->o    b : ""[o->o ""
+[<->     b : ""[<->  ""
+[o<->o   b : ""[o<->o""
+[x<->x   b : ""[x<->x""
+[->>o    b : ""[->>o ""
+[-\o     b : ""[-\o  ""
+[-\\o    b : ""[-\\\\o""
+[-/o     b : ""[-/o  ""
+[-//o    b : ""[-//o ""
+[x->o    b : ""[x->o ""
+@enduml
+@startuml
+!pragma teoz true
+participant Alice as a
+participant Bob   as b
+a ->]      : ""->]   ""
+a ->>]     : ""->>]  ""
+a -\]      : ""-\]   ""
+a -\\]     : ""-\\\\]""
+a -/]      : ""-/]   ""
+a -//]     : ""-//]  ""
+a ->x]     : ""->x]  ""
+a x->]     : ""x->]  ""
+a o->]     : ""o->]  ""
+a ->o]     : ""->o]  ""
+a o->o]    : ""o->o] ""
+a <->]     : ""<->]  ""
+a o<->o]   : ""o<->o]""
+a x<->x]   : ""x<->x]""
+a ->>o]    : ""->>o] ""
+a -\o]     : ""-\o]  ""
+a -\\o]    : ""-\\\\o]""
+a -/o]     : ""-/o]  ""
+a -//o]    : ""-//o] ""
+a x->o]    : ""x->o] ""
+@enduml
+@startuml
+Test <<-- Test: the arrow is [now] drawn correctly
+Test -->> Test: the arrow is drawn correctly
+@enduml
+@startuml
+skinparam {
+   Maxmessagesize 200
+}
+
+activate Test
+Test <<-- Test : the arrow and text are located inside the Lifeline because they are counted from the right side of the active member's column bar (Lifeline). Which is an incorrect display, right?
+Test <<-- Test : also the arrow is not displayed correctly (issue: #1678). (I wonder if the closing of the Lifeline is displayed correctly? Should it also include the arrow before it, i.e. close after it? If not, how do I close the Life Line after the last arrow?)
+deactivate Test
+
+@enduml
