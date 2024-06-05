@@ -183,7 +183,7 @@ public class LiveBoxes {
 			if (event != current)
 				continue;
 
-			if (current instanceof AbstractMessage) {
+			if (current instanceof Message || current instanceof MessageExo) {
 				Event next = nextButSkippingNotes(it);
 				while (next instanceof LifeEvent && ((LifeEvent) next).getMessage() ==current) {
 					final LifeEvent le = (LifeEvent) next;
@@ -220,24 +220,25 @@ public class LiveBoxes {
 		boolean seenActivate = false;
 		boolean seenDeactivate = false;
 		for (Event event : events) {
+			final Double potentialPosition = eventsStep.get(event);
+
 			if (position == null || lastMessage == null)
-				position = eventsStep.get(event);
+				position = potentialPosition;
 			else if (event instanceof LifeEvent) { // && event.dealWith(p)) {
 				LifeEvent le = (LifeEvent) event;
 				if (le.dealWith(p)) {
 					if (le.getMessage() == null || !(le.getMessage().isParallelWith(lastMessage))) {
-						position = eventsStep.get(event);
+						position = potentialPosition;
 					} else if ((le.isActivate() && seenDeactivate) || (le.isDeactivate() && seenActivate)) {
-						position = eventsStep.get(event);
+						position = potentialPosition;
 					}
-					if (le.isActivate())
-						seenActivate = true;
-					if (le.isDeactivate())
-						seenDeactivate = true;
+					seenActivate |= le.isActivate();
+					seenDeactivate |= le.isDeactivate();
 				} else
 						continue;
 			} else
-				position = eventsStep.get(event);
+				position = potentialPosition;
+
 			if (event instanceof AbstractMessage) {
 				if (((AbstractMessage) event).isParallelWith(lastMessage))
 					continue;
@@ -247,6 +248,7 @@ public class LiveBoxes {
 					lastMessage = (AbstractMessage) event;
 				}
 			}
+
 			if (position != null ) {
 				assert position <= totalHeight : "position=" + position + " totalHeight=" + totalHeight;
 				indent = getLevelAt(event, EventsHistoryMode.CONSIDERE_FUTURE_DEACTIVATE);
