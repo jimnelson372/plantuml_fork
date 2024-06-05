@@ -107,6 +107,8 @@ public class LiveBoxes {
 			}
 			if (event == current) {
 				if (current instanceof AbstractMessage) {
+					boolean seenActivate = false;
+					boolean seenDeactivate = false;
 					while (it.hasNext()) {
 						final Event next = nextButSkippingNotes(it);
 						if (!(next instanceof LifeEvent || next instanceof AbstractMessage)) break;
@@ -122,14 +124,18 @@ public class LiveBoxes {
 
 						if (mode != EventsHistoryMode.IGNORE_FUTURE_ACTIVATE && le.isActivate() && msg.dealWith(p)
 								&& le.getParticipant() == p) {
+							seenActivate = true;
+							if (seenDeactivate) break;
 							level++;
-							break;
+							continue;
 						}
 
 						if (mode == EventsHistoryMode.CONSIDERE_FUTURE_DEACTIVATE && le.isDeactivateOrDestroy()
 								&& msg.dealWith(p) && le.getParticipant() == p) {
+							seenDeactivate = true;
+							if (seenActivate) break;
 							level--;
-							break;
+							continue;
 						}
 
 						// System.err.println("Warning, this is message " + current + " next=" + next);
@@ -177,7 +183,7 @@ public class LiveBoxes {
 			if (event != current)
 				continue;
 
-			if (current instanceof Message || current instanceof MessageExo) {
+			if (current instanceof AbstractMessage) {
 				Event next = nextButSkippingNotes(it);
 				while (next instanceof LifeEvent && ((LifeEvent) next).getMessage() ==current) {
 					final LifeEvent le = (LifeEvent) next;
@@ -209,9 +215,40 @@ public class LiveBoxes {
 	public Stairs getStairs(double createY, double totalHeight) {
 		final Stairs stair = new Stairs();
 		int indent = 0;
+		AbstractMessage lastMessage = null;
+		Double position = null;
+		boolean seenActivate = false;
+		boolean seenDeactivate = false;
 		for (Event event : events) {
-			final Double position = eventsStep.get(event);
-			if (position != null) {
+			if (position == null || lastMessage == null)
+				position = eventsStep.get(event);
+			else if (event instanceof LifeEvent) { // && event.dealWith(p)) {
+				LifeEvent le = (LifeEvent) event;
+				if (le.dealWith(p)) {
+					if (le.getMessage() == null || !(le.getMessage().isParallelWith(lastMessage))) {
+						position = eventsStep.get(event);
+					} else if ((le.isActivate() && seenDeactivate) || (le.isDeactivate() && seenActivate)) {
+						position = eventsStep.get(event);
+					}
+					if (le.isActivate())
+						seenActivate = true;
+					if (le.isDeactivate())
+						seenDeactivate = true;
+				} else
+						continue;
+			} else
+				position = eventsStep.get(event);
+			if (event instanceof AbstractMessage) {
+				if (((AbstractMessage) event).isParallelWith(lastMessage))
+					continue;
+			  else {
+					seenActivate = false;
+					seenDeactivate = false;
+					lastMessage = (AbstractMessage) event; // ((AbstractMessage) event).getRootParallelBrother();
+				}
+			}
+			//position = eventsStep.get(event);
+			if (position != null ) {
 				assert position <= totalHeight : "position=" + position + " totalHeight=" + totalHeight;
 				indent = getLevelAt(event, EventsHistoryMode.CONSIDERE_FUTURE_DEACTIVATE);
 				final Fashion activateColor = getActivateColor(event);

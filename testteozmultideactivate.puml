@@ -1,5 +1,119 @@
 @startuml
 !pragma teoz true
+'Issue #1494 with additional parallel to C.
+'skinparam style strictuml
+
+'Actor Bob as b
+'Actor Alice as a
+'Actor Charlie as c
+
+activate b
+'b ->> a --++ : Hi Alice!
+'a ->> b --++ : Bye Bob!
+
+b ->> a --++: Bye Alice!
+'& b ->> m ++ : Bye Alice!
+ & opt test
+ a ->> c -- : Bye C too!
+ activate c
+ end
+
+deactivate b
+'activate a
+deactivate a
+'deactivate m
+deactivate c
+@enduml
+@startuml
+!pragma teoz true
+'Issue #1494 with additional parallel to C.
+'skinparam style strictuml
+
+'Actor Bob as b
+'Actor Alice as a
+'Actor Charlie as c
+
+activate b
+'b ->> a --++ : Hi Alice!
+'a ->> b --++ : Bye Bob!
+
+b ->> a ++: Bye Alice!
+'& b ->> m ++ : Bye Alice!
+'& group test
+& a ->> c ++: Bye C too!
+' end
+deactivate b
+'activate a
+deactivate a
+'deactivate m
+deactivate c
+@enduml
+
+@startuml
+!pragma teoz true
+'Forum 13409
+activate b
+b -> a --++ #red : hello
+deactivate a
+b -> a : hello2
+activate a #green
+deactivate a
+b -> a ++ #green: hello3
+@enduml
+
+@startuml
+!pragma teoz true
+'also Forum 15191
+Bob -> Alice : message
+& note right of Alice: ok
+Alice -[hidden]> Alice
+
+activate Bob
+Bob -> Alice --: deactivate
+& note right of Alice: ok
+
+Bob -> Alice ++: activate
+& note right of Alice: ok
+activate Bob
+deactivate Alice
+
+
+Bob -> Alice --++: act+deact
+& note right of Alice: not ok
+deactivate Alice
+@enduml
+
+@startuml
+!pragma teoz true
+participant "actor 1"
+participant "actor 5"
+'activate "actor 5" #Olive
+"actor 5" -> "actor 1"
+'deactivate "actor 5"
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+activate "actor 1" #MediumSeaGreen
+
+footer %version()
+@enduml
+
+@startuml
+!pragma teoz true
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+activate "actor 1" #MediumSeaGreen
+'activate "actor 1" #blue
+"actor 1" -> "actor 1": actor1 sub-sub-activity1
+deactivate "actor 1"
+deactivate "actor 1"
+deactivate "actor 1"
+'deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity2
+footer %version()
+@enduml
+
+@startuml
+!pragma teoz true
 'issue #344
 '
 ' 1 - some activation lines separated by messages
@@ -52,4 +166,382 @@ deactivate "actor 1"
 "actor 1" -> "actor 1": actor1 sub-activity4
 deactivate "actor 1"
 "actor 1" -> "actor 1": actor1 activity3
+@enduml
+@startuml
+!pragma teoz true
+activate "actor 1" #Olive
+"actor 1" -[#ffffff00]>? : actor1 activity1
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]>? : actor1 sub-activity1
+deactivate "actor 1"
+"actor 1" -[#ffffff00]>? : actor1 activity2\nactor1 summary1
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]>? : actor1 sub-activity2\nactor1 sub-activity3
+"actor 1" -> "actor 5" :
+deactivate "actor 1"
+deactivate "actor 1"
+activate "actor 5" #Olive
+"actor 5" -[#ffffff00]>? : general func activity1\ngeneral func activity2
+activate "actor 5" #OliveDrab
+"actor 5" -[#ffffff00]>? : general func sub-activity1
+"actor 5" -> "actor 1" :
+deactivate "actor 5"
+deactivate "actor 5"
+activate "actor 1" #Olive
+"actor 1" -[#ffffff00]>? :
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]>? : actor1 sub-summary1
+"actor 1" -> "actor1_func1()" :
+@enduml
+@startuml
+!pragma teoz true
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+activate "actor 1" #MediumSeaGreen
+'activate "actor 1" #blue
+"actor 1" -> "actor 1": actor1 sub-sub-activity1
+deactivate "actor 1"
+deactivate "actor 1"
+deactivate "actor 1"
+'deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity2
+footer %version()
+@enduml
+@startuml
+!pragma teoz true
+participant Jim as j
+participant Alice as a
+participant Bob   as b
+participant Tom as c
+activate j
+activate a
+activate b
+activate a
+activate b
+activate b
+activate b
+a ->     b : ""->   ""
+a ->>    b : ""->>  ""
+a -\     b : ""-\   ""
+a -\\    b : ""-\\\\""
+a -/     b : ""-/   ""
+a -//    b : ""-//  ""
+a ->x    b : ""->x  ""
+a x->    b : ""x->  ""
+a o->    b : ""o->  ""
+a ->o    b : ""->o  ""
+a o->o   b : ""o->o ""
+a <->    b : ""<->  ""
+a o<->o  b : ""o<->o""
+a x<->x  b : ""x<->x""
+a ->>o   b : ""->>o ""
+a -\o    b : ""-\o  ""
+a -\\o   b : ""-\\\\o""
+a -/o    b : ""-/o  ""
+a -//o   b : ""-//o ""
+a x->o   b : ""x->o ""
+
+a <-     b : ""<-  ""
+a <<-    b : ""<<-  ""
+a /-     b : ""/-   ""
+a //-    b : ""//-""
+a \-     b : ""\\-""
+a \\-    b : ""\\\\-""
+a x<-    b : ""x<-  ""
+a <-x    b : ""<-x  ""
+a <-o    b : ""<-o  ""
+a o<-    b : ""o<-  ""
+a o<-o   b : ""o<-o ""
+a <->    b : ""<->  ""
+a o<->o  b : ""o<->o""
+a x<->x  b : ""x<->x""
+a o<<-   b : ""o<<- ""
+a o/-    b : ""o/-  ""
+a o//-   b : ""o//-""
+a o\-    b : ""o\\-  ""
+a o\\-   b : ""o\\\\-""
+a o<-x   b : ""o<-x ""
+
+a ->     a : ""->   ""
+a ->>    a : ""->>  ""
+a -\     a : ""-\   ""
+a -\\    a : ""-\\\\""
+a -/     a : ""-/   ""
+a -//    a : ""-//  ""
+a o->    a : ""o->  ""
+a ->o    a : ""->o  ""
+a o->o   a : ""o->o ""
+a <->    a : ""<->  ""
+a o<->o  a : ""o<->o""
+a ->>o   a : ""->>o ""
+a -\o    a : ""-\o  ""
+a -\\o   a : ""-\\\\o""
+a -/o    a : ""-/o  ""
+a -//o   a : ""-//o ""
+
+b <-     b : ""<-""
+b o<-     b : ""o<-""
+b o<-o     b : ""o<-o""
+b <<-    b : ""<<-""
+b /-     b : ""/-""
+b //-    b : ""//""
+b \-     b : ""\-""
+b \\-    b : ""\\\\-""
+b <-o    b : ""<-o""
+b o<-    b : ""o<-""
+b o<-o   b : ""o<-o""
+b o<<-   b : ""o<<-""
+b o/-    b : ""o/-""
+b o//-   b : ""o//-""
+b o\-    b : ""o\\-""
+b o\\-   b : ""o\\\\-""
+
+a <->    a : "" <->""
+a o<->o  a : "" o<->o""
+a x<->x  a : ""  x<->x""
+a x->o   a : ""x->o ""
+a ->x    a : ""->x  ""
+a x->    a : ""x->  ""
+a x<-    a : ""x<-""
+a <-X    a : ""<-x""
+a o<-x   a : "" o<-x ""
+b x<-    b : ""x<-""
+b <-X    b : ""<-x""
+b o<-x   b : "" o<-x ""
+
+[->      a : ""[->   ""
+[->>     a : ""[->>  ""
+[-\      a : ""[-\   ""
+[-\\     a : ""[-\\\\""
+[-/      a : ""[-/   ""
+[-//     a : ""[-//  ""
+[->x     a : ""[->x  ""
+[x->     a : ""[x->  ""
+[o->     a : ""[o->  ""
+[->o     a : ""[->o  ""
+[o->o    a : ""[o->o ""
+[<->     a : ""[<->  ""
+[o<->o   a : ""[o<->o""
+[x<->x   a : ""[x<->x""
+[->>o    a : ""[->>o ""
+[-\o     a : ""[-\o  ""
+[-\\o    a : ""[-\\\\o""
+[-/o     a : ""[-/o  ""
+[-//o    a : ""[-//o ""
+[x->o    a : ""[x->o ""
+
+a ->]      : ""->]   ""
+a ->>]     : ""->>]  ""
+a -\]      : ""-\]   ""
+a -\\]     : ""-\\\\]""
+a -/]      : ""-/]   ""
+a -//]     : ""-//]  ""
+a ->x]     : ""->x]  ""
+a x->]     : ""x->]  ""
+a o->]     : ""o->]  ""
+a ->o]     : ""->o]  ""
+a o->o]    : ""o->o] ""
+a <->]     : ""<->]  ""
+a o<->o]   : ""o<->o]""
+a x<->x]   : ""x<->x]""
+a ->>o]    : ""->>o] ""
+a -\o]     : ""-\o]  ""
+a -\\o]    : ""-\\\\o]""
+a -/o]     : ""-/o]  ""
+a -//o]    : ""-//o] ""
+a x->o]    : ""x->o] ""
+@enduml
+@startuml
+'!pragma teoz true
+'
+' 1 - some activation lines separated by messages
+'
+activate "actor 1" #Olive
+"actor 1" -> "actor 1": actor1 activity1
+activate "actor 1" #OliveDrab
+"actor 1" -> "actor 1": actor1 sub-activity1
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity2\nactor1 summary1
+activate "actor 1" #OliveDrab
+"actor 1" -> "actor 1": actor1 sub-activity2\nactor1 sub-activity3
+"actor 1" -> "actor 5" :
+deactivate "actor 1"
+deactivate "actor 1"
+activate "actor 5" #Olive
+"actor 5" -> "actor 5": general func activity1\ngeneral func activity2
+activate "actor 5" #OliveDrab
+"actor 5" -> "actor 5": general func sub-activity1
+"actor 5" -> "actor 1" :
+deactivate "actor 5"
+deactivate "actor 5"
+
+'
+' 2 - some activation lines in sequence
+'
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+"actor 1" -> "actor 1": actor1 sub-summary1
+"actor 1" -> "actor1_func1()" :
+deactivate "actor 1"
+deactivate "actor 1"
+activate "actor1_func1()" #Olive
+"actor1_func1()" -> "actor1_func1()": actor1 func1 activity1\nactor1 func1 activity2
+"actor1_func1()" -> "actor2_func1()" :
+deactivate "actor1_func1()"
+activate "actor2_func1()" #Olive
+"actor2_func1()" -> "actor2_func1()": actor2 func1 activity1
+"actor2_func1()" -> "actor 1" :
+deactivate "actor2_func1()"
+
+'
+' 3 - some further activation lines in sequence
+'
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+activate "actor 1" #MediumSeaGreen
+"actor 1" -> "actor 1": actor1 sub-sub-activity1
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 sub-activity4
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity3
+@enduml
+@startuml
+!pragma teoz true
+'
+' 1 - some activation lines separated by messages
+'
+activate "actor 1" #Olive
+"actor 1" -> "actor 1": actor1 activity1
+activate "actor 1" #OliveDrab
+"actor 1" -> "actor 1": actor1 sub-activity1
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity2\nactor1 summary1
+activate "actor 1" #OliveDrab
+"actor 1" -> "actor 1": actor1 sub-activity2\nactor1 sub-activity3
+"actor 1" -> "actor 5" :
+deactivate "actor 1"
+deactivate "actor 1"
+activate "actor 5" #Olive
+"actor 5" -> "actor 5": general func activity1\ngeneral func activity2
+activate "actor 5" #OliveDrab
+"actor 5" -> "actor 5": general func sub-activity1
+"actor 5" -> "actor 1" :
+deactivate "actor 5"
+deactivate "actor 5"
+
+'
+' 2 - some activation lines in sequence
+'
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+"actor 1" -> "actor 1": actor1 sub-summary1
+"actor 1" -> "actor1_func1()" :
+deactivate "actor 1"
+deactivate "actor 1"
+activate "actor1_func1()" #Olive
+"actor1_func1()" -> "actor1_func1()": actor1 func1 activity1\nactor1 func1 activity2
+"actor1_func1()" -> "actor2_func1()" :
+deactivate "actor1_func1()"
+activate "actor2_func1()" #Olive
+"actor2_func1()" -> "actor2_func1()": actor2 func1 activity1
+"actor2_func1()" -> "actor 1" :
+deactivate "actor2_func1()"
+
+'
+' 3 - some further activation lines in sequence
+'
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+activate "actor 1" #MediumSeaGreen
+"actor 1" -> "actor 1" : actor1 sub-sub-activity1
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 sub-activity4
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity3
+@enduml
+@startuml
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+activate "actor 1" #MediumSeaGreen
+"actor 1" -> "actor 1": actor1 sub-sub-activity1
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 sub-activity2
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity2
+@enduml
+@startuml
+!pragma teoz true
+activate "actor 1" #Olive
+activate "actor 1" #OliveDrab
+activate "actor 1" #MediumSeaGreen
+"actor 1" -> "actor 1": actor1 sub-sub-activity1
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 sub-activity2
+deactivate "actor 1"
+"actor 1" -> "actor 1": actor1 activity2
+@enduml
+@startuml
+activate "actor 1" #Olive
+"actor 1" -[#ffffff00]> "actor 1" :
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]> "actor 1" :
+activate "actor 1" #MediumSeaGreen
+"actor 1" -[#ffffff00]> "actor 1": actor1 sub-sub-activity
+deactivate "actor 1"
+"actor 1" -[#ffffff00]> "actor 1": actor1 sub-activity
+deactivate "actor 1"
+"actor 1" -[#ffffff00]> "actor 1": actor1 activity
+@enduml
+@startuml
+!pragma teoz true
+activate "actor 1" #Olive
+"actor 1" -[#ffffff00]> "actor 1" :
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]> "actor 1" :
+activate "actor 1" #MediumSeaGreen
+"actor 1" -[#ffffff00]> "actor 1": actor1 sub-sub-activity
+deactivate "actor 1"
+"actor 1" -[#ffffff00]> "actor 1": actor1 sub-activity
+deactivate "actor 1"
+"actor 1" -[#ffffff00]> "actor 1": actor1 activity
+@enduml
+@startuml
+!pragma teoz true
+activate "actor 1" #Olive
+"actor 1" -[hidden]>?
+activate "actor 1" #OliveDrab
+& "actor 1" -[hidden]>?
+activate "actor 1" #MediumSeaGreen
+"actor 1" -[#ffffff00]>? : actor1 sub-sub-activity
+deactivate "actor 1"
+"actor 1" -[#ffffff00]>? : actor1 sub-activity
+deactivate "actor 1"
+"actor 1" -[#ffffff00]>? : actor1 activity
+deactivate "actor 1"
+@enduml
+@startuml
+!pragma teoz true
+activate "actor 1" #Olive
+"actor 1" -[#ffffff00]>? : actor1 activity1
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]>? : actor1 sub-activity1
+deactivate "actor 1"
+"actor 1" -[#ffffff00]>? : actor1 activity2\nactor1 summary1
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]>? : actor1 sub-activity2\nactor1 sub-activity3
+"actor 1" -> "actor 5" :
+deactivate "actor 1"
+deactivate "actor 1"
+activate "actor 5" #Olive
+"actor 5" -[#ffffff00]>? : general func activity1\ngeneral func activity2
+activate "actor 5" #OliveDrab
+"actor 5" -[#ffffff00]>? : general func sub-activity1
+"actor 5" -> "actor 1" :
+deactivate "actor 5"
+deactivate "actor 5"
+activate "actor 1" #Olive
+"actor 1" -[#ffffff00]>? :
+activate "actor 1" #OliveDrab
+"actor 1" -[#ffffff00]>? : actor1 sub-summary1
+"actor 1" -> "actor1_func1()" :
 @enduml
