@@ -244,10 +244,9 @@ public class LiveBoxes {
 			  else {
 					seenActivate = false;
 					seenDeactivate = false;
-					lastMessage = (AbstractMessage) event; // ((AbstractMessage) event).getRootParallelBrother();
+					lastMessage = (AbstractMessage) event;
 				}
 			}
-			//position = eventsStep.get(event);
 			if (position != null ) {
 				assert position <= totalHeight : "position=" + position + " totalHeight=" + totalHeight;
 				indent = getLevelAt(event, EventsHistoryMode.CONSIDERE_FUTURE_DEACTIVATE);

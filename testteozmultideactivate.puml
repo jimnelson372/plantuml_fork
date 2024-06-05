@@ -14,7 +14,7 @@ activate b
 b ->> a --++: Bye Alice!
 '& b ->> m ++ : Bye Alice!
  & opt test
- a ->> c -- : Bye C too!
+ a ->> c  : Bye C too!
  activate c
  end
 
@@ -23,6 +23,7 @@ deactivate b
 deactivate a
 'deactivate m
 deactivate c
+'footer %version()
 @enduml
 @startuml
 !pragma teoz true
