@@ -220,6 +220,12 @@ public class LiveBoxes {
 		boolean seenActivate = false;
 		boolean seenDeactivate = false;
 		for (Event event : events) {
+			if (event instanceof Note) {
+				lastMessage = null;
+				seenActivate = false;
+				seenDeactivate = false;
+			}
+
 			final Double potentialPosition = eventsStep.get(event);
 
 			if (position == null || lastMessage == null)
