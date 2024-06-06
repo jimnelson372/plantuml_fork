@@ -662,3 +662,76 @@ deactivate 2
 deactivate 2
 end
 @enduml
+@startuml
+!pragma teoz true
+footer %version()
+
+1 -> 5 : Hi
+activate 5
+5 -> 5: general func activity1
+activate 5
+5 -> 5 : general func sub-activity1
+activate 5
+deactivate 5
+deactivate 5
+5 -> 1 : Test
+deactivate 5
+
+@enduml
+@startuml
+!pragma teoz true
+
+2 -> 3: Call method ADD
+activate 3
+3 -> 3: Call method ADD
+activate 3
+3 -> 3: Call method ADD
+activate 3
+3 -> 3: Call method ADD
+activate 3
+'3 -> 3: Call method ADD
+'activate 3
+'3 -> 3: Call method ADD
+deactivate 3
+deactivate 3
+deactivate 3
+'deactivate 3
+'deactivate 3
+3 --> 2 : Test
+deactivate 3
+
+
+@enduml
+@startuml
+!pragma teoz true
+footer %version()
+
+1 -> 5 :
+activate 5
+5 -> 5: general func activity1
+activate 5
+5 -> 5 : general func sub-activity1
+activate 5
+||20||
+
+5 -> 1 : Test
+deactivate 5
+deactivate 5
+deactivate 5
+
+@enduml
+@startuml
+!pragma teoz true
+
+
+1 o-> 1: actor1 activity1
+activate 1
+activate 1
+activate 1
+||25||
+
+1 o-> 1: actor1 activity2
+deactivate 1
+deactivate 1
+deactivate 1
+@enduml
