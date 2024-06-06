@@ -127,7 +127,6 @@ public class LiveBoxes {
 							seenActivate = true;
 							if (seenDeactivate) break;
 							level++;
-							continue;
 						}
 
 						if (mode == EventsHistoryMode.CONSIDERE_FUTURE_DEACTIVATE && le.isDeactivateOrDestroy()
@@ -135,7 +134,6 @@ public class LiveBoxes {
 							seenDeactivate = true;
 							if (seenActivate) break;
 							level--;
-							continue;
 						}
 
 						// System.err.println("Warning, this is message " + current + " next=" + next);
