@@ -319,9 +319,10 @@ public class GroupingTile extends AbstractTile {
 			if (tile instanceof GroupingTile) {
 				final double yPoint = tile.getContactPointRelative();
 				final double adjustment = yPointAll - yPoint;
+				TimeHook yAdjusted = new TimeHook(yArg.getValue() + adjustment);
 				GroupingTile groupingTile = (GroupingTile) tile;
 				final double headerHeight = groupingTile.getHeaderHeight(stringBounder);
-				fillPositionalSubGroupTiles(stringBounder, new TimeHook(yArg.getValue()+adjustment), full, groupingTile);
+				fillPositionalSubGroupTiles(stringBounder, yAdjusted, full, groupingTile);
 			}
 		}
 	}

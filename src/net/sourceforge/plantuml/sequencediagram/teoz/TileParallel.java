@@ -46,7 +46,6 @@ import net.sourceforge.plantuml.klimt.font.StringBounder;
 import net.sourceforge.plantuml.klimt.shape.UDrawable;
 import net.sourceforge.plantuml.real.Real;
 import net.sourceforge.plantuml.real.RealUtils;
-import net.sourceforge.plantuml.sequencediagram.AbstractMessage;
 import net.sourceforge.plantuml.sequencediagram.Event;
 
 public class TileParallel extends CommonTile {
@@ -77,12 +76,8 @@ public class TileParallel extends CommonTile {
 			final double yPoint = tile.getContactPointRelative();
 			final double adjustment = yPointAll - yPoint;
 			TimeHook y2 = y;
-			if (adjustment > 0.0) {
-				if (tile instanceof CommunicationTile || tile instanceof GroupingTile || tile instanceof LifeEventTile)
-					y2 = new TimeHook(y.getValue() + adjustment);
-//				if (tile instanceof GroupingTile)
-//					((GroupingTile) tile).subEventCallBackY(y2);
-			}
+			if (tile instanceof CommunicationTile || tile instanceof GroupingTile)
+				y2 = new TimeHook(y.getValue() + adjustment);
 			tile.callbackY(y2);
 		}
 	}

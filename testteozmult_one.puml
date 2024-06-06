@@ -1,21 +1,23 @@
 @startuml
 !pragma teoz true
-'Issue #1494 with additional parallel to C.
-'skinparam style strictuml
 
-'Actor Bob as b
-'Actor Alice as a
-'Actor Charlie as c
+'!theme crt-amber
+'skinparam backgroundColor #000000
 
-activate b
-'b ->> a --++ : Hi Alice!
-'a ->> b --++ : Bye Bob!
+participant "Random Name" as foo
 
-b ->> a --: Bye Alice!
-'& b ->> m ++ : Bye Alice!
-  &opt test
-  activate a
- a ->> c ++ : Bye C too!
- 'activate c
- end
- @enduml
+hide footbox
+
+'foo -> foo : test
+'&  opt message received
+    alt REQUEST
+        bossrpcp ->B : request
+    else RESPONSE
+        bossrpcp -> bossrpcp : respond
+'    else AGAIN
+'     bossrpcp -> bossrpcp : request
+    end
+'end
+& foo -> foo : test
+
+@enduml

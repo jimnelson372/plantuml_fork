@@ -17,7 +17,7 @@ activate b
  b ->> a --++: Bye Alice!
   & opt test
   'activate a
- a ->> c -- : Bye C too!
+ a ->> c -- : Bye C too!a
  activate c
  end
  '& b ->> a --: Bye Alice!
@@ -578,5 +578,28 @@ Bob -> Alice ++ #red: hello4
 Bob -> Alice ++ #red: hello5
 note right of Alice: Right5
 return Hello55
+
+@enduml
+@startuml
+!pragma teoz true
+
+'!theme crt-amber
+'skinparam backgroundColor #000000
+
+participant "Random Name" as foo
+
+hide footbox
+
+'foo -> foo : test
+'&  opt message received
+    alt REQUEST
+        bossrpcp ->B : request
+    else RESPONSE
+        bossrpcp -> bossrpcp : respond
+'    else AGAIN
+'     bossrpcp -> bossrpcp : request
+    end
+'end
+& foo -> foo : test
 
 @enduml
