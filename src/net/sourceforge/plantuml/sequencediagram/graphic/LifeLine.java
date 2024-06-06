@@ -212,7 +212,7 @@ public class LifeLine {
 			if (events.get(i).type == LifeSegmentVariation.LARGER)
 				eventLevel++;
 			else if (events.get(i).type == LifeSegmentVariation.SMALLER)
-				eventLevel--;
+				eventLevel = Math.max(0,eventLevel-1);
 			for (final Iterator<SegmentColored> it = segmentsCutted.iterator(); it.hasNext();) {
 				final SegmentColored seg = it.next();
 				final HColor specificBackColor = seg.getSpecificBackColor();
