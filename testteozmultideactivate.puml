@@ -17,7 +17,7 @@ activate b
  b ->> a --++: Bye Alice!
   & opt test
   'activate a
- a ->> c -- : Bye C too!a
+ a ->> c -- : Bye C too!
  activate c
  end
  '& b ->> a --: Bye Alice!

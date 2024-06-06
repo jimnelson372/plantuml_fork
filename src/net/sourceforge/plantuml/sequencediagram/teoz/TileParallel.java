@@ -71,15 +71,8 @@ public class TileParallel extends CommonTile {
 	@Override
 	final protected void callbackY_internal(TimeHook y) {
 		super.callbackY_internal(y);
-		final double yPointAll = getContactPointRelative();
-		for (Tile tile : tiles) {
-			final double yPoint = tile.getContactPointRelative();
-			final double adjustment = yPointAll - yPoint;
-			TimeHook y2 = y;
-			if (tile instanceof CommunicationTile || tile instanceof GroupingTile)
-				y2 = new TimeHook(y.getValue() + adjustment);
-			tile.callbackY(y2);
-		}
+//		for (Tile tile : tiles)
+//			tile.callbackY(y);
 	}
 
 	public void add(Tile tile) {
@@ -117,7 +110,6 @@ public class TileParallel extends CommonTile {
 	public void addConstraints() {
 		for (Tile tile : tiles)
 			tile.addConstraints();
-
 	}
 
 	public Real getMinX() {
