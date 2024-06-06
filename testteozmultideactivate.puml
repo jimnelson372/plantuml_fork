@@ -11,12 +11,16 @@ activate b
 'b ->> a --++ : Hi Alice!
 'a ->> b --++ : Bye Bob!
 
-b ->> a --++: Bye Alice!
+'b ->> a --++: Bye Alice!
+
 '& b ->> m ++ : Bye Alice!
- & opt test
- a ->> c  : Bye C too!
+ b ->> a --++: Bye Alice!
+  & opt test
+  'activate a
+ a ->> c -- : Bye C too!
  activate c
  end
+ '& b ->> a --: Bye Alice!
 
 deactivate b
 'activate a

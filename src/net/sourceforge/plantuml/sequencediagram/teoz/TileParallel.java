@@ -77,8 +77,12 @@ public class TileParallel extends CommonTile {
 			final double yPoint = tile.getContactPointRelative();
 			final double adjustment = yPointAll - yPoint;
 			TimeHook y2 = y;
-			if (tile instanceof CommunicationTile)
-				y2 = new TimeHook(y.getValue() + adjustment);
+			if (adjustment > 0.0) {
+				if (tile instanceof CommunicationTile || tile instanceof GroupingTile || tile instanceof LifeEventTile)
+					y2 = new TimeHook(y.getValue() + adjustment);
+//				if (tile instanceof GroupingTile)
+//					((GroupingTile) tile).subEventCallBackY(y2);
+			}
 			tile.callbackY(y2);
 		}
 	}

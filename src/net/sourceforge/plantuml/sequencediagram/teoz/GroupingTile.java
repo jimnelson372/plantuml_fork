@@ -314,11 +314,14 @@ public class GroupingTile extends AbstractTile {
 	}
 
 	private static void fillPositionalParallelTiles(StringBounder stringBounder, TimeHook yArg, List<CommonTile> full, TileParallel tileParallel) {
+		final double yPointAll = tileParallel.getContactPointRelative();
 		for (Tile tile : tileParallel.getTiles()) {
 			if (tile instanceof GroupingTile) {
+				final double yPoint = tile.getContactPointRelative();
+				final double adjustment = yPointAll - yPoint;
 				GroupingTile groupingTile = (GroupingTile) tile;
 				final double headerHeight = groupingTile.getHeaderHeight(stringBounder);
-				fillPositionalSubGroupTiles(stringBounder, new TimeHook(yArg.getValue()), full, groupingTile);
+				fillPositionalSubGroupTiles(stringBounder, new TimeHook(yArg.getValue()+adjustment), full, groupingTile);
 			}
 		}
 	}
