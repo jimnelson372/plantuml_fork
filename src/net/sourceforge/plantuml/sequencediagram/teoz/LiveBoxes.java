@@ -102,7 +102,7 @@ public class LiveBoxes {
 					level++;
 
 				if (le.getParticipant() == p && le.isDeactivateOrDestroy())
-					level--;
+					level = Math.max(0,level - 1);
 
 			}
 			if (event == current) {
@@ -133,7 +133,7 @@ public class LiveBoxes {
 								&& msg.dealWith(p) && le.getParticipant() == p) {
 							seenDeactivate = true;
 							if (seenActivate) break;
-							level--;
+							level = Math.max(0,level - 1);
 						}
 
 						// System.err.println("Warning, this is message " + current + " next=" + next);
