@@ -110,6 +110,7 @@ public class TileParallel extends CommonTile {
 	public void addConstraints() {
 		for (Tile tile : tiles)
 			tile.addConstraints();
+
 	}
 
 	public Real getMinX() {
