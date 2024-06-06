@@ -219,6 +219,7 @@ public class LiveBoxes {
 		boolean seenDeactivate = false;
 		for (Event event : events) {
 			if (event instanceof Note) {
+				// This would be a participant positioned Note, not a Message based Note
 				lastMessage = null;
 				seenActivate = false;
 				seenDeactivate = false;
