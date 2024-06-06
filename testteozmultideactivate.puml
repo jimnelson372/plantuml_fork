@@ -735,3 +735,18 @@ deactivate 1
 deactivate 1
 deactivate 1
 @enduml
+@startuml
+'!pragma teoz true
+
+
+1 o-> 1: actor1 activity1
+activate 1
+activate 1
+activate 1
+||25||
+
+1 o-> 1: actor1 activity2
+deactivate 1
+deactivate 1
+deactivate 1
+@enduml
