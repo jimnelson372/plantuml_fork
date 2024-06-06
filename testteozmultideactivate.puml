@@ -750,3 +750,63 @@ deactivate 1
 deactivate 1
 deactivate 1
 @enduml
+@startuml
+'!pragma teoz true
+note over Bob, Alice: teoz true
+activate Bob
+Bob -> Alice ++--: not ok
+Alice-> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice ++: not ok
+deactivate Bob
+Alice -> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice: not ok
+deactivate Bob
+activate Alice
+Alice -> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice --: not ok
+activate Alice
+Alice -> Alice: style 2
+deactivate Alice
+@enduml
+@startuml
+!pragma teoz true
+note over Bob, Alice: teoz true
+activate Bob
+Bob -> Alice ++--: not ok
+Alice-> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice ++: not ok
+deactivate Bob
+Alice -> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice: not ok
+deactivate Bob
+activate Alice
+Alice -> Alice: style 1
+deactivate Alice
+
+activate Bob
+Bob -> Alice --: not ok
+activate Alice
+Alice -> Alice: style 2
+deactivate Alice
+@enduml
+@startuml
+!pragma teoz true
+
+ alice -> bob : B bb bbbb
+& bob -> bob : A a aaaaaa
+@enduml
