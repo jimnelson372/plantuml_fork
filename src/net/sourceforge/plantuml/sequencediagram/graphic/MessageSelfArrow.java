@@ -79,8 +79,13 @@ class MessageSelfArrow extends Arrow {
 
 	@Override
 	protected void drawInternalU(UGraphic ug, double maxX, Context2D context) {
+		double startingYAdjustment = 0;
+		if (deltaY < 0)
+			startingYAdjustment = -halfLifeWidth;
+		if (deltaY > 0)
+			startingYAdjustment = halfLifeWidth;
 		final StringBounder stringBounder = ug.getStringBounder();
-		ug = ug.apply(new UTranslate(getStartingX(stringBounder), getStartingY() + deltaY));
+		ug = ug.apply(new UTranslate(getStartingX(stringBounder), getStartingY() + startingYAdjustment));
 		final Area area = new Area(
 				new XDimension2D(getPreferredWidth(stringBounder), getPreferredHeight(stringBounder)));
 		area.setDeltaX1(deltaY);

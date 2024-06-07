@@ -76,7 +76,7 @@ public abstract class AbstractMessage extends AbstractEvent implements EventWith
 
 	private final Display label;
 	private final ArrowConfiguration arrowConfiguration;
-	private final Set<LifeEventType> lifeEventsType = EnumSet.noneOf(LifeEventType.class);
+	private final List<LifeEventType> lifeEventsType = new ArrayList<>();
 
 	private Url url;
 	private final String messageNumber;
@@ -170,6 +170,20 @@ public abstract class AbstractMessage extends AbstractEvent implements EventWith
 	@Deprecated
 	public boolean isActivate() {
 		return lifeEventsType.contains(LifeEventType.ACTIVATE);
+	}
+
+	public int countActivates() {
+		int count = 0;
+		for (LifeEventType type : lifeEventsType)
+			count += (type == LifeEventType.ACTIVATE) ? 1 : 0;
+		return count;
+	}
+
+	public int countDeactivates() {
+		int count = 0;
+		for (LifeEventType type : lifeEventsType)
+			count += (type == LifeEventType.DEACTIVATE) ? 1 : 0;
+		return count;
 	}
 
 	@Deprecated
