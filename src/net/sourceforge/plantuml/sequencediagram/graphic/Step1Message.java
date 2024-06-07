@@ -205,14 +205,12 @@ class Step1Message extends Step1Abstract {
 		double deltaX = 0;
 		double halfLifeWidth = getHalfLifeWidth();
 		if (getMessage().isActivate()) {
-			int change = getMessage().countActivates();
-			deltaY -= halfLifeWidth * change;
+			deltaY -= halfLifeWidth;
 			if (OptionFlags.STRICT_SELFMESSAGE_POSITION)
 				deltaX += 5;
-			deltaX += halfLifeWidth * (change-1);
 		}
 		if (getMessage().isDeactivate())
-			deltaY += halfLifeWidth * getMessage().countDeactivates();
+			deltaY += halfLifeWidth;
 
 
 		int currentLevel = getLevelAt(posY,halfLifeWidth);

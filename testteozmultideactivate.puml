@@ -810,3 +810,83 @@ deactivate Alice
  alice -> bob : B bb bbbb
 & bob -> bob : A a aaaaaa
 @enduml
+@startuml
+'!pragma teoz true
+participant LOOP
+entity lmuzxgq
+participant awcijxrjrn
+database dfuum
+
+group loop_lrbnb
+activate LOOP
+
+LOOP -> lmuzxgq : shbg nxmtju vdyzbb
+activate lmuzxgq
+...zxmyxb adlfget...
+return
+deactivate lmuzxgq
+
+group anjfn dingwezbbd
+LOOP -> lmuzxgq : qcdqgs bnyvl
+activate lmuzxgq
+lmuzxgq -> awcijxrjrn : ncmw bnyvl qcdqgs
+deactivate lmuzxgq
+LOOP -> lmuzxgq : nzwc husbou
+activate lmuzxgq
+lmuzxgq -> awcijxrjrn : ncmw husbou nzwc
+deactivate lmuzxgq
+
+end
+LOOP -> lmuzxgq : hbki nxmtju yxmekob
+activate lmuzxgq
+LOOP <-- lmuzxgq
+deactivate lmuzxgq
+LOOP -> lmuzxgq : hbki deoc nzwc
+activate lmuzxgq
+LOOP <-- lmuzxgq
+deactivate lmuzxgq
+
+deactivate LOOP
+end
+
+@enduml
+@startuml
+!pragma teoz true
+participant LOOP
+entity lmuzxgq
+participant awcijxrjrn
+database dfuum
+
+group loop_lrbnb
+activate LOOP
+
+LOOP -> lmuzxgq : shbg nxmtju vdyzbb
+activate lmuzxgq
+...zxmyxb adlfget...
+return
+deactivate lmuzxgq
+
+group anjfn dingwezbbd
+LOOP -> lmuzxgq : qcdqgs bnyvl
+activate lmuzxgq
+lmuzxgq -> awcijxrjrn : ncmw bnyvl qcdqgs
+deactivate lmuzxgq
+LOOP -> lmuzxgq : nzwc husbou
+activate lmuzxgq
+lmuzxgq -> awcijxrjrn : ncmw husbou nzwc
+deactivate lmuzxgq
+
+end
+LOOP -> lmuzxgq : hbki nxmtju yxmekob
+activate lmuzxgq
+LOOP <-- lmuzxgq
+deactivate lmuzxgq
+LOOP -> lmuzxgq : hbki deoc nzwc
+activate lmuzxgq
+LOOP <-- lmuzxgq
+deactivate lmuzxgq
+
+deactivate LOOP
+end
+
+@enduml

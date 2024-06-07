@@ -35,8 +35,6 @@
  */
 package net.sourceforge.plantuml.sequencediagram;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -142,15 +140,15 @@ public class Participant implements SpecificBackcolorable, WithStyle {
 		return initialLife;
 	}
 
-	private List<Fashion> liveBackcolors = new ArrayList<>();
+	private Fashion liveBackcolors;
 
 	public final void incInitialLife(Fashion colors) {
 		initialLife++;
-		this.liveBackcolors.add(colors);
+		this.liveBackcolors = colors;
 	}
 
-	public Fashion getLiveSpecificBackColors(int which) {
-		return liveBackcolors.get(which);
+	public Fashion getLiveSpecificBackColors() {
+		return liveBackcolors;
 	}
 
 	public Colors getColors() {
