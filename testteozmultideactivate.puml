@@ -752,7 +752,7 @@ deactivate 1
 @enduml
 @startuml
 '!pragma teoz true
-note over Bob, Alice: teoz true
+note over Bob, Alice: teoz false
 activate Bob
 Bob -> Alice ++--: not ok
 Alice-> Alice: style 1
@@ -812,6 +812,7 @@ deactivate Alice
 @enduml
 @startuml
 '!pragma teoz true
+footer teoz false
 participant LOOP
 entity lmuzxgq
 participant awcijxrjrn
@@ -852,6 +853,7 @@ end
 @enduml
 @startuml
 !pragma teoz true
+footer teoz true
 participant LOOP
 entity lmuzxgq
 participant awcijxrjrn
