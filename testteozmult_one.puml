@@ -1,5 +1,5 @@
 @startuml
-!pragma teoz true
+'!pragma teoz true
 [-> P1 : F
 activate P1
 P1 -> P4 : F
@@ -347,4 +347,11 @@ deactivate P19
 P4 --> P1
 deactivate P4
 deactivate P1
+@enduml
+@startuml
+
+'!pragma teoz true
+'activate a
+a -> a ++:test
+a -> a ++-- : test2
 @enduml
