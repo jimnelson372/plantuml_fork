@@ -351,7 +351,10 @@ deactivate P1
 @startuml
 
 '!pragma teoz true
-'activate a
-a -> a ++:test
+activate a
+a -> a :test
+activate a
+'a -[hidden]> a
+deactivate a
 a -> a ++-- : test2
 @enduml
