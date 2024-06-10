@@ -330,8 +330,7 @@ public class GroupingTile extends AbstractTile {
 
 	public static TimeHook fillPositionelTiles(StringBounder stringBounder, TimeHook y, List<Tile> tiles,
 			final List<CommonTile> local, List<CommonTile> full) {
-		List<Tile> mergedParallel = mergeParallel(stringBounder, tiles);
-		for (Tile tile : mergedParallel) {
+		for (Tile tile : mergeParallel(stringBounder, tiles)) {
 			tile.callbackY(y);
 			local.add((CommonTile) tile);
 			full.add((CommonTile) tile);
