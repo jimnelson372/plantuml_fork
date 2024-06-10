@@ -297,6 +297,8 @@ public class ComponentRoseSelfArrow extends AbstractComponentRoseArrow {
 		final double textHeight = getTextHeight(stringBounder);
 		final double textAndArrowHeight = textHeight + getArrowOnlyHeight(stringBounder);
 		return (textHeight + textAndArrowHeight) / 2 + getPaddingX();
+		//For another release, for better parallel alignment
+		// return getTextHeight(stringBounder) + getPaddingY();
 	}
 
 	@Override
