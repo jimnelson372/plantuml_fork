@@ -1,5 +1,132 @@
+
 @startuml
 '!pragma teoz true
+skinparam roundcorner 10
+
+title
+example of par2 usage
+end title
+
+!procedure $getAddr($Answer,$interval)
+group one
+  HB -> MAC :  Get(*macAddr)
+ end
+ group two
+  MAC --> HB : $Answer
+ end
+!endprocedure
+
+!procedure $putAddr($Addr,$interval)
+  R -> MAC :  Put($Addr)
+!endprocedure
+
+!procedure $lldp($Source,$Value,$interval)
+  $Source -> R :  LLDP($Value)
+!endprocedure
+
+hide footbox
+
+box "Device 1" #LightBlue
+participant HB
+database Storage as MAC
+participant R
+end box
+
+box "Device 2" #LightGreen
+participant C
+participant CN
+end box
+
+== System Starts ==
+
+par2
+ 'group one
+  HB -> MAC :  Get(*macAddr)
+ 'end
+' group two
+'  MAC --> HB : $Answer
+' end
+else
+R -> MAC :  Put($Addr)
+'$putAddr("MAC1",135)
+'
+'else
+'$lldp("C","MAC1",10)
+
+end
+@enduml
+@startuml
+!pragma teoz true
+
+box "group 1" #lightblue
+    Participant P1
+    Participant P2
+end box
+' I would like to insert an horizontal minimu space constraint here
+box "group 2" #lightgreen
+    Participant P3
+    Participant P4
+end box
+par2
+ P1->P2
+'With the 2 next lines it crash
+else
+ P3->P4
+end
+@enduml
+@startuml
+!pragma teoz true
+skinparam BoxPadding 40
+
+box "group 1" #lightblue
+    Participant P1
+    Participant P2
+end box
+' I would like to insert an horizontal minimu space constraint here
+box "group 2" #lightgreen
+    Participant P3
+    Participant P4
+end box
+
+par2
+    loop forever
+        P1 -> P2
+        P2 --> P1
+        end
+else
+    loop forever
+        P3 -> P4
+        P4 --> P3
+    end
+end
+@enduml
+@startuml
+!pragma teoz true
+skinparam BoxPadding 40
+
+box "group 1" #lightblue
+    Participant P1
+    Participant P2
+end box
+' I would like to insert an horizontal minimu space constraint here
+box "group 2" #lightgreen
+    Participant P3
+    Participant P4
+end box
+
+loop forever
+    P1 -> P2
+    P2 --> P1
+end
+
+& loop forever
+    P3 -> P4
+    P4 --> P3
+end
+
+@enduml
+@startuml
+!pragma teoz true
 skinparam roundcorner 10
 
 title
@@ -50,19 +177,42 @@ end
 @enduml
 @startuml
 !pragma teoz true
-autoactivate on
+skinparam BoxPadding 40
 
+box "group 1" #lightblue
+    Participant P1
+    Participant P2
+end box
+' I would like to insert an horizontal minimu space constraint here
+box "group 2" #lightgreen
+    Participant P3
+    Participant P4
+end box
 
-loop 1 to n
-a-> b: hi
-end
-
-loop 1 to n
-b->c : broken1
-end
-
-& loop 1 to n
-e->f : broken2
+par2
+    loop forever
+        P1 -> P2
+        P2 --> P1
+        end
+else
+    loop forever
+        P3 -> P4
+        P4 --> P3
+    end
 end
 @enduml
+@startuml
+
+!pragma teoz true
+Alice -> Bob : hello
+& Charlie -> Bob : hi
+
+group Friends
+
+Alice -> Bob : hello
+& Charlie -> Bob : hi
+
+end
+@enduml
+
 
