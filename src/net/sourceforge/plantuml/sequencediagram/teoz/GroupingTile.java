@@ -173,7 +173,7 @@ public class GroupingTile extends AbstractTile {
 			if (par2Tile instanceof ElseTile) {
 				hasElseTile = true;
 				eventTileCount = 0;
-			} else {
+			} else if (!(par2Tile instanceof EmptyTile)){
 				eventTileCount++;
 				maxParallelSections = Math.max(maxParallelSections, eventTileCount);
 			}
@@ -188,7 +188,8 @@ public class GroupingTile extends AbstractTile {
 
 		int whichTileParallel = 0;
 		for (Tile par2Tile : tiles) {
-			if (!(par2Tile instanceof ElseTile)) {
+			if (par2Tile instanceof EmptyTile) {
+			} else if (!(par2Tile instanceof ElseTile)) {
 				TileParallel parallel = (TileParallel) result.get(whichTileParallel++);
 				parallel.add(par2Tile);
 			} else

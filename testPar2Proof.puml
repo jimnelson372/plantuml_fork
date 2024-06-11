@@ -1,28 +1,11 @@
 
 @startuml
-'!pragma teoz true
+!pragma teoz true
 skinparam roundcorner 10
 
 title
 example of par2 usage
 end title
-
-!procedure $getAddr($Answer,$interval)
-group one
-  HB -> MAC :  Get(*macAddr)
- end
- group two
-  MAC --> HB : $Answer
- end
-!endprocedure
-
-!procedure $putAddr($Addr,$interval)
-  R -> MAC :  Put($Addr)
-!endprocedure
-
-!procedure $lldp($Source,$Value,$interval)
-  $Source -> R :  LLDP($Value)
-!endprocedure
 
 hide footbox
 
@@ -40,14 +23,15 @@ end box
 == System Starts ==
 
 par2
- 'group one
+ group one
   HB -> MAC :  Get(*macAddr)
- 'end
-' group two
-'  MAC --> HB : $Answer
-' end
+ end
+ group two
+  MAC --> HB : $Answer
+ end
 else
 R -> MAC :  Put($Addr)
+MAC -> R :  Return
 '$putAddr("MAC1",135)
 '
 'else
