@@ -30,52 +30,48 @@
  *
  *
  * Original Author:  Arnaud Roques
- * 
+ *
  *
  */
-package net.sourceforge.plantuml.sequencediagram.teoz;
+package net.sourceforge.plantuml.api.v2;
 
-import net.sourceforge.plantuml.klimt.font.StringBounder;
-import net.sourceforge.plantuml.klimt.shape.UDrawable;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Optional;
 
-public abstract class CommonTile implements Tile, UDrawable {
+import net.sourceforge.plantuml.core.Diagram;
 
-	private final StringBounder stringBounder;
-	private TimeHook y = new TimeHook(-1);
+class DiagramReturnError implements DiagramReturn {
 
-	public CommonTile(StringBounder stringBounder) {
-		this.stringBounder = stringBounder;
+	private final String errorMessage;
+
+	DiagramReturnError(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
-	final public void callbackY(TimeHook y) {
-		if (YGauge.USE_ME) {
-		} else {
-			this.y = y;
-			callbackY_internal(y);
-		}
+	@Override
+	public Diagram getDiagram() {
+		return null;
 	}
 
-	protected void callbackY_internal(TimeHook y) {
-		if (YGauge.USE_ME) {
-			System.err.println("callbackY_internal::y=" + y + " gauge=" + getYGauge() + " " + getClass());
-		}
+	@Override
+	public String error() {
+		return errorMessage;
 	}
 
-	protected final StringBounder getStringBounder() {
-		return stringBounder;
+	@Override
+	public Optional<Integer> getErrorLine() {
+		return Optional.empty();
 	}
 
-	public double getMiddleX() {
-		final double max = getMaxX().getCurrentValue();
-		final double min = getMinX().getCurrentValue();
-		return (min + max) / 2;
+	@Override
+	public BufferedImage asImage() throws IOException {
+		throw new IOException("No diagram available: " + errorMessage);
 	}
 
-	public final TimeHook getTimeHook() {
-		if (YGauge.USE_ME) {
-			throw new IllegalStateException();
-		}
-		return y;
+	@Override
+	public Throwable getRootCause() {
+		return null;
 	}
 
 }

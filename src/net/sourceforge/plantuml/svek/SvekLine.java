@@ -52,6 +52,7 @@ import net.sourceforge.plantuml.abel.Link;
 import net.sourceforge.plantuml.abel.LinkArrow;
 import net.sourceforge.plantuml.abel.LinkStrategy;
 import net.sourceforge.plantuml.abel.NoteLinkStrategy;
+import net.sourceforge.plantuml.annotation.DuplicateCode;
 import net.sourceforge.plantuml.cucadiagram.EntityPort;
 import net.sourceforge.plantuml.decoration.LinkDecor;
 import net.sourceforge.plantuml.decoration.LinkMiddleDecor;
@@ -110,6 +111,7 @@ import net.sourceforge.plantuml.utils.Direction;
 import net.sourceforge.plantuml.utils.Log;
 import net.sourceforge.plantuml.utils.Position;
 
+@DuplicateCode(reference = "SvekLine, CucaDiagramFileMakerElk, CucaDiagramFileMakerSmetana")
 public class SvekLine implements Moveable, Hideable, GuideLine {
 
 	private static final XDimension2D CONSTRAINT_SPOT = new XDimension2D(10, 10);
@@ -757,6 +759,14 @@ public class SvekLine implements Moveable, Hideable, GuideLine {
 		return bibliotekon.getNode(link.getEntity1());
 	}
 
+	private Cluster getSvekCluster1() {
+		return bibliotekon.getCluster(link.getEntity1());
+	}
+
+	private Cluster getSvekCluster2() {
+		return bibliotekon.getCluster(link.getEntity2());
+	}
+
 	private boolean isOpalisable() {
 		return dotPath.getBeziers().size() <= 1;
 	}
@@ -770,6 +780,7 @@ public class SvekLine implements Moveable, Hideable, GuideLine {
 
 	}
 
+	@DuplicateCode(reference = "ElkPath")
 	public void drawU(UGraphic ug, Set<String> ids, UStroke suggestedStroke, Rainbow rainbow) {
 		if (opale)
 			return;
@@ -839,14 +850,22 @@ public class SvekLine implements Moveable, Hideable, GuideLine {
 		UTranslate magneticForce1 = UTranslate.none();
 		if (getSvekNode1() != null) {
 			final MagneticBorder magneticBorder1 = getSvekNode1().getMagneticBorder();
-			magneticForce1 = magneticBorder1.getForceAt(ug.getStringBounder(), todraw.getStartPoint());
+			magneticForce1 = magneticBorder1.getForceAt(ug.getStringBounder(), todraw.getStartPoint().move(dx, dy));
+			todraw.moveStartPoint(magneticForce1);
+		} else if (getSvekCluster1() != null) {
+			final MagneticBorder magneticBorder1 = getSvekCluster1().getMagneticBorder();
+			magneticForce1 = magneticBorder1.getForceAt(ug.getStringBounder(), todraw.getStartPoint().move(dx, dy));
 			todraw.moveStartPoint(magneticForce1);
 		}
 
 		UTranslate magneticForce2 = UTranslate.none();
 		if (getSvekNode2() != null) {
 			final MagneticBorder magneticBorder2 = getSvekNode2().getMagneticBorder();
-			magneticForce2 = magneticBorder2.getForceAt(ug.getStringBounder(), todraw.getEndPoint());
+			magneticForce2 = magneticBorder2.getForceAt(ug.getStringBounder(), todraw.getEndPoint().move(dx, dy));
+			todraw.moveEndPoint(magneticForce2);
+		} else if (getSvekCluster2() != null) {
+			final MagneticBorder magneticBorder2 = getSvekCluster2().getMagneticBorder();
+			magneticForce2 = magneticBorder2.getForceAt(ug.getStringBounder(), todraw.getEndPoint().move(dx, dy));
 			todraw.moveEndPoint(magneticForce2);
 		}
 
