@@ -6,9 +6,10 @@
 .idea
 *.iml
 out
-
+/bin
 #vscode files
 **/bin/
+/.vs
 
 # Ant result file
 plantuml.jar
@@ -30,3 +31,6 @@ build/
 
 # output of dev tests
 /outputdev
+
+*.patch
+**/*.class
