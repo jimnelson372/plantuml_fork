@@ -352,12 +352,12 @@ public class Display implements Iterable<CharSequence> {
 		return this;
 	}
 
-	public final static Pattern2 patternStereotype = MyPattern.cmpile("^(.*?)(?:\\<\\<\\s*(.*)\\s*\\>\\>)\\s*$");
+	public final static Pattern2 patternStereotype = MyPattern.cmpile("^(.*?)(\\<\\<\\s*(.*)\\s*\\>\\>)\\s*$");
 
-	public String getEndingStereotype() {
+	public Stereotype getEndingStereotype() {
 		final Matcher2 m = patternStereotype.matcher(displayData.get(displayData.size() - 1));
 		if (m.matches())
-			return m.group(2);
+			return Stereotype.build(m.group(2));
 
 		return null;
 	}
@@ -460,18 +460,10 @@ public class Display implements Iterable<CharSequence> {
 	}
 
 	public List<? extends CharSequence> asList() {
+		if (displayData == null)
+			return Collections.emptyList();
 		return Collections.unmodifiableList(displayData);
 	}
-
-//	public List<StringLocated> as2() {
-//		final List<StringLocated> result = new ArrayList<>();
-//		LineLocationImpl location = new LineLocationImpl("inner", null);
-//		for (CharSequence cs : displayData) {
-//			location = location.oneLineRead();
-//			result.add(new StringLocated(cs.toString(), location));
-//		}
-//		return Collections.unmodifiableList(result);
-//	}
 
 	public boolean hasUrl() {
 		final UrlBuilder urlBuilder = new UrlBuilder(null, UrlMode.ANYWHERE);

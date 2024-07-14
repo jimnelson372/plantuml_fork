@@ -31,35 +31,47 @@
  *
  * Original Author:  Arnaud Roques
  *
- * 
+ *
  */
-package net.sourceforge.plantuml.klimt.geom;
+package net.sourceforge.plantuml.api.v2;
 
-public final class PositionableImpl implements Positionable {
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Optional;
 
-	private XPoint2D pos;
+import net.sourceforge.plantuml.core.Diagram;
 
-	private final XDimension2D dim;
+class DiagramReturnError implements DiagramReturn {
 
-	public PositionableImpl(double x, double y, XDimension2D dim) {
-		this.pos = new XPoint2D(x, y);
-		this.dim = dim;
+	private final String errorMessage;
+
+	DiagramReturnError(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
-	public static PositionableImpl create(XPoint2D pt, XDimension2D dim) {
-		return new PositionableImpl(pt.getX(), pt.getY(), dim);
+	@Override
+	public Diagram getDiagram() {
+		return null;
 	}
 
-	public XPoint2D getPosition() {
-		return pos;
+	@Override
+	public String error() {
+		return errorMessage;
 	}
 
-	public XDimension2D getSize() {
-		return dim;
+	@Override
+	public Optional<Integer> getErrorLine() {
+		return Optional.empty();
 	}
 
-	public void moveDelta(double deltaX, double deltaY) {
-		this.pos = this.pos.move(deltaX, deltaY);
+	@Override
+	public BufferedImage asImage() throws IOException {
+		throw new IOException("No diagram available: " + errorMessage);
+	}
+
+	@Override
+	public Throwable getRootCause() {
+		return null;
 	}
 
 }
