@@ -39,6 +39,7 @@ import net.sourceforge.plantuml.abel.Entity;
 import net.sourceforge.plantuml.annotation.DuplicateCode;
 import net.sourceforge.plantuml.cucadiagram.ICucaDiagram;
 import net.sourceforge.plantuml.decoration.symbol.USymbol;
+import net.sourceforge.plantuml.decoration.symbol.USymbols;
 import net.sourceforge.plantuml.elk.proxy.graph.ElkNode;
 import net.sourceforge.plantuml.klimt.UStroke;
 import net.sourceforge.plantuml.klimt.UTranslate;
@@ -62,14 +63,14 @@ import net.sourceforge.plantuml.svek.ClusterDecoration;
 import net.sourceforge.plantuml.svek.ClusterHeader;
 import net.sourceforge.plantuml.svek.PackageStyle;
 
-public class ElkCluster {
+public class MyElkCluster {
 
 	private final Entity group;
 	private final ElkNode elkNode;
 	private final ICucaDiagram diagram;
 	private final ISkinParam skinParam;
 
-	public ElkCluster(ICucaDiagram diagram, Entity group, ElkNode elkNode) {
+	public MyElkCluster(ICucaDiagram diagram, Entity group, ElkNode elkNode) {
 		this.group = group;
 		this.elkNode = elkNode;
 		this.diagram = diagram;
@@ -126,15 +127,18 @@ public class ElkCluster {
 	@DuplicateCode(reference = "Cluster")
 	public MagneticBorder getMagneticBorder(StringBounder stringBounder) {
 
-		if (group.getUSymbol() == null)
-			return new MagneticBorderNone();
-
-		final XPoint2D corner = CucaDiagramFileMakerElk.getPosition(elkNode);
-
-		final USymbol uSymbol = group.getUSymbol();
+		USymbol uSymbol = group.getUSymbol();
 		PackageStyle packageStyle = group.getPackageStyle();
 		if (packageStyle == null)
 			packageStyle = skinParam.packageStyle();
+
+		if (uSymbol == null && packageStyle == PackageStyle.FOLDER)
+			uSymbol = USymbols.FOLDER;
+
+		if (uSymbol == null)
+			return new MagneticBorderNone();
+
+		final XPoint2D corner = CucaDiagramFileMakerElk.getPosition(elkNode);
 
 		final UmlDiagramType umlDiagramType = UmlDiagramType.CLASS;
 
