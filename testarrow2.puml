@@ -1,0 +1,35 @@
+@startuml
+participant A
+participant B
+A <<- B
+B <<- A
+A ->> B
+B ->> A
+@enduml
+@startuml
+Test -->> Test: OK
+Test <<-- Test: OK
+Test <<-->> Test: the arrow is KO
+Test <<->> Test: the arrow is KO
+Test <<--> Test: the arrow is KO
+Test <->> Test: the arrow is KO
+Test <-> Test: the arrow is KO
+Test <<-> a: the arrow is KO
+Test <->> a: the arrow is KO
+Test <<--> a: the arrow is KO
+Test <-->> a: the arrow is KO
+@enduml
+@startuml
+!pragma teoz true
+Test -->> Test: OK
+Test <<-- Test: OK
+Test <<-->> Test: the arrow is KO
+Test <<->> Test: the arrow is KO
+Test <<--> Test: the arrow is KO
+Test <->> Test: the arrow is KO
+Test <-> Test: the arrow is KO
+Test <<-> a: the arrow is KO
+Test <->> a: the arrow is KO
+Test <<--> a: the arrow is KO
+Test <-->> a: the arrow is KO
+@enduml
