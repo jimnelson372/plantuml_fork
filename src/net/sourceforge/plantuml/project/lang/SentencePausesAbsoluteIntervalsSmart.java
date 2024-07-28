@@ -36,27 +36,26 @@
 package net.sourceforge.plantuml.project.lang;
 
 import net.sourceforge.plantuml.command.CommandExecutionResult;
+import net.sourceforge.plantuml.project.DaysAsDates;
 import net.sourceforge.plantuml.project.GanttDiagram;
 import net.sourceforge.plantuml.project.core.Task;
 import net.sourceforge.plantuml.project.time.Day;
 
-public class SentencePausesDate extends SentenceSimple<GanttDiagram> {
+public class SentencePausesAbsoluteIntervalsSmart extends SentenceSimple<GanttDiagram> {
 
-	public SentencePausesDate() {
+	public SentencePausesAbsoluteIntervalsSmart() {
 		super(SubjectTask.ME, Verbs.pauses, Words.zeroOrMore(Words.THE, Words.ON, Words.AT, Words.FROM),
-				ComplementDate.any());
+				new ComplementIntervalsSmart());
 	}
 
 	@Override
 	public CommandExecutionResult execute(GanttDiagram project, Object subject, Object complement) {
 		final Task task = (Task) subject;
-		final Day pause = (Day) complement;
-//		final Day startingDate = project.getStartingDate();
-//		if (startingDate == null) {
-//			return CommandExecutionResult.error("No starting date for the project");
-//		}
-		task.addPause(pause);
+		final DaysAsDates pauses = (DaysAsDates) complement;
+		for (Day day : pauses)
+			task.addPause(day);
 		return CommandExecutionResult.ok();
+
 	}
 
 }

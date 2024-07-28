@@ -30,32 +30,45 @@
  *
  *
  * Original Author:  Arnaud Roques
- * 
  *
+ * 
  */
-package net.sourceforge.plantuml.project.lang;
+package net.sourceforge.plantuml.svek;
 
-import net.sourceforge.plantuml.command.CommandExecutionResult;
-import net.sourceforge.plantuml.project.DaysAsDates;
-import net.sourceforge.plantuml.project.GanttDiagram;
-import net.sourceforge.plantuml.project.core.Task;
-import net.sourceforge.plantuml.project.time.Day;
+import net.sourceforge.plantuml.abel.Entity;
 
-public class SentencePausesDates extends SentenceSimple<GanttDiagram> {
+public class ClusterManager {
 
-	public SentencePausesDates() {
-		super(SubjectTask.ME, Verbs.pauses, Words.zeroOrMore(Words.THE, Words.ON, Words.AT, Words.FROM),
-				new ComplementDates());
+	private final Bibliotekon bibliotekon;
+	private Cluster current;
+
+	public ClusterManager(Bibliotekon bibliotekon, Cluster root) {
+		this.bibliotekon = bibliotekon;
+		this.current = root;
 	}
 
-	@Override
-	public CommandExecutionResult execute(GanttDiagram project, Object subject, Object complement) {
-		final Task task = (Task) subject;
-		final DaysAsDates pauses = (DaysAsDates) complement;
-		for (Day day : pauses)
-			task.addPause(day);
+	public void addNode(SvekNode node) {
+		current.addNode(node);
+	}
 
-		return CommandExecutionResult.ok();
+	public void openCluster(Entity g, ClusterHeader clusterHeader) {
+		this.current = current.createChild(clusterHeader, bibliotekon.getColorSequence(), g);
+		bibliotekon.addCluster(this.current);
+	}
+
+	public void closeCluster() {
+		if (current.getParentCluster() == null)
+			throw new IllegalStateException();
+
+		this.current = current.getParentCluster();
+	}
+
+	public final Bibliotekon getBibliotekon() {
+		return bibliotekon;
+	}
+
+	public Cluster getCurrent() {
+		return current;
 	}
 
 }

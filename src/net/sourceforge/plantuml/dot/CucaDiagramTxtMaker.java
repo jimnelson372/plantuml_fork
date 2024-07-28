@@ -46,13 +46,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.atmp.CucaDiagram;
 import net.sourceforge.plantuml.FileFormat;
 import net.sourceforge.plantuml.StringUtils;
 import net.sourceforge.plantuml.abel.Entity;
 import net.sourceforge.plantuml.abel.EntityPortion;
 import net.sourceforge.plantuml.abel.Link;
 import net.sourceforge.plantuml.asciiart.BasicCharArea;
-import net.sourceforge.plantuml.cucadiagram.ICucaDiagram;
 import net.sourceforge.plantuml.cucadiagram.PortionShower;
 import net.sourceforge.plantuml.klimt.UTranslate;
 import net.sourceforge.plantuml.klimt.creole.Display;
@@ -90,7 +90,7 @@ public final class CucaDiagramTxtMaker {
 		return showMethods || showFields;
 	}
 
-	public CucaDiagramTxtMaker(ICucaDiagram diagram, FileFormat fileFormat) throws IOException {
+	public CucaDiagramTxtMaker(CucaDiagram diagram, FileFormat fileFormat) throws IOException {
 		this.fileFormat = fileFormat;
 		this.portionShower = diagram;
 
@@ -99,7 +99,7 @@ public final class CucaDiagramTxtMaker {
 
 		final Map<Entity, Block> blocks = new HashMap<Entity, Block>();
 
-		for (Entity ent : diagram.getEntityFactory().leafs()) {
+		for (Entity ent : diagram.leafs()) {
 			// printClass(ent);
 			// ug.translate(0, getHeight(ent) + 1);
 			final double width = getWidth(ent) * getXPixelPerChar();
@@ -119,12 +119,12 @@ public final class CucaDiagramTxtMaker {
 		}
 		solver.solve(root, paths);
 		for (Path p : paths) {
-			if (p.isInvis()) {
+			if (p.isInvis())
 				continue;
-			}
+
 			drawDotPath(p.getDotPath(), globalUg.getCharArea(), getXPixelPerChar(), getYPixelPerChar());
 		}
-		for (Entity ent : diagram.getEntityFactory().leafs()) {
+		for (Entity ent : diagram.leafs()) {
 			final Block b = blocks.get(ent);
 			final XPoint2D p = b.getPosition();
 			printClass(ent, (UGraphicTxt) globalUg
@@ -174,20 +174,20 @@ public final class CucaDiagramTxtMaker {
 	}
 
 	public List<SFile> createFiles(SFile suggestedFile) throws IOException {
-		if (fileFormat == FileFormat.UTXT) {
+		if (fileFormat == FileFormat.UTXT)
 			globalUg.getCharArea().print(suggestedFile.createPrintStream(UTF_8));
-		} else {
+		else
 			globalUg.getCharArea().print(suggestedFile.createPrintStream());
-		}
+
 		return Collections.singletonList(suggestedFile);
 	}
 
 	private int getHeight(Entity entity) {
 		int result = StringUtils.getHeight(entity.getDisplay());
 		if (showMember(entity)) {
-			for (CharSequence att : entity.getBodier().getRawBody()) {
+			for (CharSequence att : entity.getBodier().getRawBody())
 				result += StringUtils.getHeight(Display.getWithNewlines(att.toString()));
-			}
+
 //			for (Member att : entity.getBodier().getMethodsToDisplay()) {
 //				result += StringUtils.getHeight(Display.getWithNewlines(att.getDisplay(true)));
 //			}
@@ -205,9 +205,9 @@ public final class CucaDiagramTxtMaker {
 		if (showMember(entity)) {
 			for (CharSequence att : entity.getBodier().getRawBody()) {
 				final int w = StringUtils.getWcWidth(Display.getWithNewlines(att.toString()));
-				if (w > result) {
+				if (w > result)
 					result = w;
-				}
+
 			}
 //			for (Member att : entity.getBodier().getMethodsToDisplay()) {
 //			final int w = StringUtils.getWcWidth(Display.getWithNewlines(att.getDisplay(true)));

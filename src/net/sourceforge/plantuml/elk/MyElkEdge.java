@@ -39,10 +39,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import net.atmp.CucaDiagram;
 import net.sourceforge.plantuml.abel.Entity;
 import net.sourceforge.plantuml.abel.Link;
 import net.sourceforge.plantuml.annotation.DuplicateCode;
-import net.sourceforge.plantuml.cucadiagram.ICucaDiagram;
 import net.sourceforge.plantuml.decoration.LinkDecor;
 import net.sourceforge.plantuml.decoration.LinkType;
 
@@ -91,13 +91,13 @@ import net.sourceforge.plantuml.svek.IEntityImage;
 import net.sourceforge.plantuml.svek.extremity.ExtremityFactory;
 import net.sourceforge.plantuml.svek.extremity.ExtremityFactoryExtends;
 
-public class MyElkPath implements UDrawable {
+public class MyElkEdge implements UDrawable {
 	// ::remove folder when __HAXE__
 
 	private final Link link;
 	private final ElkEdge edge;
 
-	private final ICucaDiagram diagram;
+	private final CucaDiagram diagram;
 	private final TextBlock centerLabel;
 	private final TextBlock headLabel;
 	private final TextBlock tailLabel;
@@ -112,7 +112,7 @@ public class MyElkPath implements UDrawable {
 
 	private final UTranslate translate;
 
-	public MyElkPath(ICucaDiagram diagram, SName styleName, Link link, ElkEdge edge, TextBlock centerLabel,
+	public MyElkEdge(CucaDiagram diagram, SName styleName, Link link, ElkEdge edge, TextBlock centerLabel,
 			TextBlock tailLabel, TextBlock headLabel, double magicY2, Map<Entity, MyElkCluster> elkClusters,
 			UTranslate translate, Map<Entity, IEntityImage> nodeImages) {
 		this.link = link;

@@ -33,54 +33,26 @@
  * 
  *
  */
-package net.sourceforge.plantuml.cucadiagram;
+package net.sourceforge.plantuml.project.lang;
 
-import java.io.IOException;
-import java.util.Collection;
+import net.sourceforge.plantuml.command.CommandExecutionResult;
+import net.sourceforge.plantuml.project.GanttDiagram;
+import net.sourceforge.plantuml.project.core.Task;
+import net.sourceforge.plantuml.project.time.Day;
 
-import net.atmp.ImageBuilder;
-import net.sourceforge.plantuml.Annotated;
-import net.sourceforge.plantuml.FileFormatOption;
-import net.sourceforge.plantuml.abel.EntityFactory;
-import net.sourceforge.plantuml.abel.Link;
-import net.sourceforge.plantuml.core.UmlSource;
-import net.sourceforge.plantuml.skin.Pragma;
-import net.sourceforge.plantuml.skin.UmlDiagramType;
-import net.sourceforge.plantuml.style.ISkinParam;
-import net.sourceforge.plantuml.style.StyleBuilder;
+public class SentencePausesAbsoluteDate extends SentenceSimple<GanttDiagram> {
 
-public interface ICucaDiagram extends GroupHierarchy, PortionShower, Annotated {
+	public SentencePausesAbsoluteDate() {
+		super(SubjectTask.ME, Verbs.pauses, Words.zeroOrMore(Words.THE, Words.ON, Words.AT, Words.FROM),
+				ComplementDate.any());
+	}
 
-	ISkinParam getSkinParam();
-
-	UmlDiagramType getUmlDiagramType();
-
-	EntityFactory getEntityFactory();
-
-	StyleBuilder getCurrentStyleBuilder();
-
-	boolean isHideEmptyDescriptionForState();
-
-	Collection<Link> getLinks();
-
-	Pragma getPragma();
-
-	long seed();
-
-	String getMetadata();
-
-	String getFlashData();
-
-	ImageBuilder createImageBuilder(FileFormatOption fileFormatOption) throws IOException;
-
-	String getNamespaceSeparator();
-
-	UmlSource getSource();
-
-	String[] getDotStringSkek();
-
-	// boolean isAutarkic(Entity g);
-
-	int getUniqueSequence();
+	@Override
+	public CommandExecutionResult execute(GanttDiagram project, Object subject, Object complement) {
+		final Task task = (Task) subject;
+		final Day pause = (Day) complement;
+		task.addPause(pause);
+		return CommandExecutionResult.ok();
+	}
 
 }

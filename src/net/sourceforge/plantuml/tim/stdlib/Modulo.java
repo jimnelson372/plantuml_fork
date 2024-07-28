@@ -5,12 +5,12 @@
  * (C) Copyright 2009-2024, Arnaud Roques
  *
  * Project Info:  https://plantuml.com
- * 
+ *
  * If you like this project or if you find it useful, you can support us at:
- * 
+ *
  * https://plantuml.com/patreon (only 1$ per month!)
  * https://plantuml.com/paypal
- * 
+ *
  * This file is part of PlantUML.
  *
  * PlantUML is free software; you can redistribute it and/or modify it
@@ -30,19 +30,44 @@
  *
  *
  * Original Author:  Arnaud Roques
- * 
  *
  */
-package net.sourceforge.plantuml.abel;
+package net.sourceforge.plantuml.tim.stdlib;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import net.sourceforge.plantuml.stereo.Stereotype;
+import net.sourceforge.plantuml.text.StringLocated;
+import net.sourceforge.plantuml.tim.EaterException;
+import net.sourceforge.plantuml.tim.TContext;
+import net.sourceforge.plantuml.tim.TFunctionSignature;
+import net.sourceforge.plantuml.tim.TMemory;
+import net.sourceforge.plantuml.tim.expression.TValue;
 
-public interface IEntityFactory {
+public class Modulo extends SimpleReturnFunction {
 
-	public boolean isRemoved(Stereotype stereotype);
+    @Override
+    public TFunctionSignature getSignature() {
+        return new TFunctionSignature("%mod", 2);
+    }
 
-	public Collection<Entity> leafs();
+    @Override
+    public boolean canCover(int nbArg, Set<String> namedArguments) {
+        return nbArg == 2;
+    }
+
+    @Override
+    public TValue executeReturnFunction(TContext context, TMemory memory, StringLocated location, List<TValue> values,
+            Map<String, TValue> named) throws EaterException {
+        final Integer dividend = values.get(0).toInt();
+        final Integer divisor = values.get(1).toInt();
+
+        if (divisor == 0) {
+            throw new EaterException("Divide by zero", location);
+        }
+
+        return TValue.fromInt(dividend % divisor);
+    }
 
 }

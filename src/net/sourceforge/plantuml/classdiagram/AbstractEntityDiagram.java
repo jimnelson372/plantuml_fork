@@ -42,8 +42,10 @@ import java.util.List;
 import java.util.Map;
 
 import net.atmp.CucaDiagram;
+import net.sourceforge.plantuml.abel.Entity;
 import net.sourceforge.plantuml.core.DiagramDescription;
 import net.sourceforge.plantuml.core.UmlSource;
+import net.sourceforge.plantuml.klimt.creole.Display;
 import net.sourceforge.plantuml.skin.UmlDiagramType;
 
 public abstract class AbstractEntityDiagram extends CucaDiagram {
@@ -56,9 +58,9 @@ public abstract class AbstractEntityDiagram extends CucaDiagram {
 	final protected List<String> getDotStrings() {
 		final List<String> def = Arrays.asList("nodesep=.35;", "ranksep=0.8;", "edge [fontsize=11,labelfontsize=11];",
 				"node [fontsize=11,height=.35,width=.55];");
-		if (getPragma().isDefine("graphattributes") == false) {
+		if (getPragma().isDefine("graphattributes") == false) 
 			return def;
-		}
+		
 		final String attribute = getPragma().getValue("graphattributes");
 		final List<String> result = new ArrayList<>(def);
 		result.add(attribute);
@@ -66,7 +68,7 @@ public abstract class AbstractEntityDiagram extends CucaDiagram {
 	}
 
 	final public DiagramDescription getDescription() {
-		final StringBuilder result = new StringBuilder("(" + getEntityFactory().leafs().size() + " entities");
+		final StringBuilder result = new StringBuilder("(" + this.leafs().size() + " entities");
 		if (getSource() != null) {
 			final String id = getSource().getId();
 			if (id != null) {
@@ -76,6 +78,29 @@ public abstract class AbstractEntityDiagram extends CucaDiagram {
 		}
 		result.append(")");
 		return new DiagramDescription(result.toString());
+	}
+
+	protected final void packSomePackage() {
+		String separator = getNamespaceSeparator();
+		if (separator == null)
+			separator = ".";
+
+		while (true) {
+			boolean changed = false;
+			for (Entity group : this.groups())
+				if (group.canBePacked()) {
+					final Entity child = group.groups().iterator().next();
+					final String appended = group.getDisplay().get(0) + separator;
+					final Display newDisplay = child.getDisplay().appendFirstLine(appended);
+					child.setDisplay(newDisplay);
+					group.setPacked(true);
+					changed = true;
+				}
+
+			if (changed == false)
+				return;
+		}
+
 	}
 
 }

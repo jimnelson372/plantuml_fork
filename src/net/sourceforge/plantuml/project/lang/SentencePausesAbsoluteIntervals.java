@@ -33,27 +33,29 @@
  * 
  *
  */
-package net.sourceforge.plantuml.cucadiagram;
+package net.sourceforge.plantuml.project.lang;
 
-import java.util.Collections;
-import java.util.List;
+import net.sourceforge.plantuml.command.CommandExecutionResult;
+import net.sourceforge.plantuml.project.DaysAsDates;
+import net.sourceforge.plantuml.project.GanttDiagram;
+import net.sourceforge.plantuml.project.core.Task;
+import net.sourceforge.plantuml.project.time.Day;
 
-import net.sourceforge.plantuml.abel.Entity;
-import net.sourceforge.plantuml.abel.EntityPortion;
+public class SentencePausesAbsoluteIntervals extends SentenceSimple<GanttDiagram> {
 
-public interface PortionShower {
+	public SentencePausesAbsoluteIntervals() {
+		super(SubjectTask.ME, Verbs.pauses, Words.zeroOrMore(Words.THE, Words.ON, Words.AT, Words.FROM),
+				new ComplementIntervals());
+	}
 
-	public static final PortionShower ALL = new PortionShower() {
-		public boolean showPortion(EntityPortion portion, Entity entity) {
-			return true;
-		}
+	@Override
+	public CommandExecutionResult execute(GanttDiagram project, Object subject, Object complement) {
+		final Task task = (Task) subject;
+		final DaysAsDates pauses = (DaysAsDates) complement;
+		for (Day day : pauses)
+			task.addPause(day);
 
-		public List<String> getVisibleStereotypeLabels(Entity entity) {
-			return Collections.emptyList();
-		}
-	};
+		return CommandExecutionResult.ok();
+	}
 
-	boolean showPortion(EntityPortion portion, Entity entity);
-
-	List<String> getVisibleStereotypeLabels(Entity entity);
 }

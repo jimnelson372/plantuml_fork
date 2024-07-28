@@ -55,6 +55,7 @@ import net.sourceforge.plantuml.stereo.StereotypePattern;
 public class SubjectTask implements Subject<GanttDiagram> {
 
 	public static final Subject<GanttDiagram> ME = new SubjectTask();
+	public static final String REGEX_TASK_CODE = "\\[([^\\[\\]]+?)\\]";
 
 	private SubjectTask() {
 	}
@@ -70,13 +71,12 @@ public class SubjectTask implements Subject<GanttDiagram> {
 			final String shortName = arg.get("SHORTNAME", 0);
 			final String then = arg.get("THEN", 0);
 			final String stereotype = arg.get("STEREOTYPE", 0);
-			
+
 			final TaskCode code = TaskCode.fromIdAndDisplay(shortName, subject);
 			result = gantt.getOrCreateTask(code, then != null);
-			
+
 			if (stereotype != null)
 				result.setStereotype(Stereotype.build(arg.get("STEREOTYPE", 0)));
-
 
 			gantt.setIt(result);
 		}
@@ -106,7 +106,8 @@ public class SubjectTask implements Subject<GanttDiagram> {
 				new SentenceHappensDate(), new SentenceEnds(), new SentenceTaskEndsOnlyRelative(),
 				new SentenceTaskEndsAbsolute(), new SentenceIsColored(), new SentenceIsColoredForCompletion(),
 				new SentenceIsDeleted(), new SentenceIsForTask(), new SentenceLinksTo(), new SentenceOccurs(),
-				new SentenceDisplayOnSameRowAs(), new SentencePausesDate(), new SentencePausesDates(),
+				new SentenceDisplayOnSameRowAs(), new SentencePausesAbsoluteDate(),
+				new SentencePausesAbsoluteIntervals(), new SentencePausesAbsoluteIntervalsSmart(),
 				new SentencePausesDayOfWeek(), new SentenceIsDisplayedAs());
 	}
 
@@ -114,12 +115,12 @@ public class SubjectTask implements Subject<GanttDiagram> {
 		return new RegexOr( //
 				new RegexLeaf("IT", "(it)"), //
 				new RegexConcat(new RegexLeaf("THEN", "(then[%s]+)?"), //
-						new RegexLeaf("SUBJECT", "\\[([^\\[\\]]+?)\\]"), //
+						new RegexLeaf("SUBJECT", REGEX_TASK_CODE), //
 						StereotypePattern.optional("STEREOTYPE"), //
 						new RegexOptional(new RegexConcat(//
 								Words.exactly(Words.AS), //
 								RegexLeaf.spaceOneOrMore(), //
-								new RegexLeaf("SHORTNAME", "\\[([^\\[\\]]+?)\\]"))), //
+								new RegexLeaf("SHORTNAME", REGEX_TASK_CODE))), //
 						new RegexOptional(new RegexConcat( //
 								Words.exactly(Words.ON), //
 								RegexLeaf.spaceOneOrMore(), //
