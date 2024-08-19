@@ -1,0 +1,66 @@
+@startuml
+
+rectangle A1 as "component A1"
+rectangle A2 as "component A2"
+
+A1 --> A2   : " >     "
+A1 -^ A2   : " ^     "
+A1 ->> A2  : " >>    "
+A1 -|> A2  : " |>    "
+A1 -||> A2 : " ||>   "
+A1 -:|> A2 : " :|>   "
+A1 -\\ A2  : " \\\   "
+@enduml
+@startuml
+
+rectangle A1 as "component A1"
+rectangle A2 as "component A2"
+
+A1 -# A2   : " #     "
+A1 -* A2   : " *     "
+A1 -o A2   : " o     "
+A1 -+ A2   : " +     "
+@enduml
+@startuml
+rectangle A1 as "component A1"
+rectangle A2 as "component A2"
+
+A1 -(0- A2  : " (0    "
+A1 -( A2   : " (     "
+A1 -0 A2   : " 0     "
+A1 -@ A2   : " @     "
+
+
+@enduml
+@startuml
+
+rectangle A1 as "component A1"
+rectangle A2 as "component A2"
+
+A1 <- A2   : " <     "
+A1 ^- A2   : " ^     "
+A1 <<- A2  : " <<    "
+A1 <|- A2  : " <|    "
+A1 <||- A2 : " <||   "
+A1 <|:- A2 : " <|:   "
+@enduml
+@startuml
+@startuml
+
+rectangle A1 as "component A1"
+rectangle A2 as "component A2"
+
+A1 #- A2   : " #     "
+A1 *- A2   : " *     "
+A1 o- A2   : " o     "
+A1 +- A2   : " +     "
+@enduml
+@startuml
+rectangle A1 as "component A1"
+rectangle A2 as "component A2"
+
+A1 0)- A2  : " 0)    "
+A1 )- A2   : " )     "
+A1 0- A2   : " 0     "
+A1 @- A2   : " @     "
+@enduml
